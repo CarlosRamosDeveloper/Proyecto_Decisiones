@@ -39,7 +39,7 @@
 >Almacena la información del personaje jugable
 
 - id
-- player_id
+- user_id
 - preset_id
 - name
 - last_location_id

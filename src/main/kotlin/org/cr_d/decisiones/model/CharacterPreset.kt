@@ -3,12 +3,11 @@ package org.cr_d.decisiones.model
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "character_preset")
+@Table(name = "character_presets")
 data class CharacterPreset (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
-
+    val id: Long,
     @Column(nullable = false)
-    var race: String? = null,
+    var race: String
 )
