@@ -12,7 +12,7 @@
 
 > Ejemplo:  
 > El personaje llega a una ciudad y hay un gato subido en un arbol, un niño le pide ayuda para bajar al gato.  
-> Ayudar: El gato huye en cuanto toca el suelo.  
+>> Ayudar: El gato huye en cuanto toca el suelo.
 > No ayudar: El niño intenta trepar al arbol para bajar al gato, pero se termina cayendo y se parte una pierna.  
 > La afinidad del niño bajará varios puntos por que va a echar la culpa al jugador de haberse roto una pierna.
 
@@ -23,8 +23,8 @@
 >Información básica del usuario  
 >Los personajes están vinculados al usuario
 
-- id 
-- username
+- id - Long
+- username - 
 - mail
 
 ### character_preset
@@ -100,3 +100,28 @@
 
 - npc_id
 - location_id
+
+## Iniciando el proyecto
+
+>Iniciar el proyecto: docker compose -up -d  
+>> Importante: Si ignoramos este paso, no funcionará el resto
+
+### Base de datos
+
+>Iniciar la base de datos
+
+> Paso 1: Acceder a Mysql
+
+``` bash
+docker exec -it mys
+ql_db bash
+```
+> Paso 2: Acceder a la base de datos
+
+``` mysql
+mysql -u user -p decisions_database
+```
+
+> Ahora ya estamos dentro de la base de datos  
+> Paso 3: Creamos las tablas
+
