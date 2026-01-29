@@ -12,7 +12,7 @@ import jakarta.persistence.Table
 data class Location(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
     @Column(nullable = false)
     val name: String,
 )

@@ -140,11 +140,25 @@ TODO
 
 > Este es el listado de todos los endpoints REST del servidor.
 
-### User
+### Users
 
-| HTTP method |Endpoint| Resultado                    |
-|-------------|-|------------------------------|
-| Get         |localhost:8080/api/users| Obtiene todos los usuarios   |
-| Get         |localhost:8080/api/users/1| Obtiene el usuario por id 1  |
-| Get         |localhost:8080/api/users/email?email=carlos@mail.com| Obtiene el usuario por email |
-| Post        |localhost:8080/api/users| Crea un usuario              |
+>La API expone en el endpoint /api/users la información para los clientes relacionada con los usuarios, estos son
+> los métodos http y los endpoints con ejemplos.
+
+| HTTP method |Endpoint| Resultado                      |
+|-------------|-|--------------------------------|
+| Get         |localhost:8080/api/users| Obtiene todos los usuarios     |
+| Get         |localhost:8080/api/users/1| Obtiene el usuario con el id 1 |
+| Get         |localhost:8080/api/users/email?email=carlos@mail.com| Obtiene el usuario por email   |
+| Post        |localhost:8080/api/users| Crea un usuario                |
+
+### Locations
+
+> La API expone en el endpoint /api/locations la información para los clientes relacionada con 
+> las ubicaciones del juego. Estos son los métodos Http y los endpoints a los que el usuario tiene acceso.
+
+| HTTP method | Endpoint                       | Resultado                        |
+|-------------|--------------------------------|----------------------------------|
+| Get         | localhost:8080/api/locations   | Obtiene todas las ubicaciones    |
+| Get         | localhost:8080/api/locations/1 | Obtiene la ubicación con el id 1 |
+

@@ -5,31 +5,32 @@ import org.cr_d.decisiones.service.UserService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 class UserRestController (
     private val userService: UserService
 ){
-    @GetMapping("/users")
+    @GetMapping("")
     fun getUsers() : List<User>{
         return userService.getAllUsers()
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     fun getUserById(@PathVariable("id") id : Long) : User?{
         return userService.getUserById(id)
     }
 
-    @GetMapping("/users/email")
+    @GetMapping("/email")
     fun getUserByEmail(@RequestParam("email") email: String) : User?{
         return userService.getUserByEmail(email)
     }
 
-    @PostMapping("/users")
+    @PostMapping("")
     fun createUser(@RequestBody user: User){
         userService.save(user)
     }
 
-    @DeleteMapping("/users/{id}")
+    //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
+    @DeleteMapping("/{id}")
     fun deleteUserById(@PathVariable("id") id : Long){
         userService.delete(id)
     }
