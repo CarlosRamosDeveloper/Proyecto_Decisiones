@@ -162,3 +162,12 @@ TODO
 | Get         | localhost:8080/api/locations   | Obtiene todas las ubicaciones    |
 | Get         | localhost:8080/api/locations/1 | Obtiene la ubicación con el id 1 |
 
+### Presets
+
+>La api expone en el endpoint /api/presets la información para los clientes relacionada con los presets
+> del juego. Estos son los métodos http y los endpoints a los que el usuario tiene acceso.
+
+| HTTP method | Endpoint                       | Resultado                         |
+|-------------|--------------------------------|-----------------------------------|
+| Get         | localhost:8080/api/presets     | Obtiene todos los presets         |
+| Get         | localhost:8080/api/presets/1 | Obtiene la ubicación del preset 1 |

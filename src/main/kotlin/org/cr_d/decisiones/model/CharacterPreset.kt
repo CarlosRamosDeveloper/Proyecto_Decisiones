@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class CharacterPreset (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
     @Column(nullable = false)
     var race: String
 )
