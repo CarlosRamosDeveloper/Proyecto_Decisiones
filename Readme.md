@@ -16,6 +16,15 @@
 > No ayudar: El niño intenta trepar al arbol para bajar al gato, pero se termina cayendo y se parte una pierna.  
 > La afinidad del niño bajará varios puntos por que va a echar la culpa al jugador de haberse roto una pierna.
 
+## Requisitos
+
+El equipo del usuario requiere de la instalación del siguiente software para que el proyecto funcione:
+
+- Git
+- Docker
+- Java >= 17
+- Intellij IDEA o VSC
+
 ## Tables
 
 ### users
@@ -103,25 +112,39 @@
 
 ## Iniciando el proyecto
 
->Iniciar el proyecto: docker compose -up -d  
->> Importante: Si ignoramos este paso, no funcionará el resto
+### Descargar el repositorio
 
-### Base de datos
-
->Iniciar la base de datos
-
-> Paso 1: Acceder a Mysql
+En el terminal escribimos:
 
 ``` bash
-docker exec -it mys
-ql_db bash
-```
-> Paso 2: Acceder a la base de datos
-
-``` mysql
-mysql -u user -p decisions_database
+git clone https://github.com/CarlosRamosDeveloper/Proyecto_Decisiones.git
 ```
 
-> Ahora ya estamos dentro de la base de datos  
-> Paso 3: Creamos las tablas
+### Levantar el servidor
 
+1. Abrir el daemon de docker.
+2. Dirigirse a la ubicación del proyecto.
+3. Ejecutar el comando:
+
+``` bash
+docker compose up -d
+```
+
+4. Abrimos el IDE y levantamos el servidor ejecutándolo.
+
+## Gestión
+
+TODO
+
+## Endpoints
+
+> Este es el listado de todos los endpoints REST del servidor.
+
+### User
+
+| HTTP method |Endpoint| Resultado                    |
+|-------------|-|------------------------------|
+| Get         |localhost:8080/api/users| Obtiene todos los usuarios   |
+| Get         |localhost:8080/api/users/1| Obtiene el usuario por id 1  |
+| Get         |localhost:8080/api/users/email?email=carlos@mail.com| Obtiene el usuario por email |
+| Post        |localhost:8080/api/users| Crea un usuario              |
