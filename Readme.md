@@ -151,6 +151,7 @@ TODO
 | Get         |localhost:8080/api/users/1| Obtiene el usuario con el id 1 |
 | Get         |localhost:8080/api/users/email?email=carlos@mail.com| Obtiene el usuario por email   |
 | Post        |localhost:8080/api/users| Crea un usuario                |
+| Delete      |localhost:8080/api/users/3| Elimina al usuario con id 3    |
 
 ### Locations
 
@@ -171,3 +172,16 @@ TODO
 |-------------|--------------------------------|-----------------------------------|
 | Get         | localhost:8080/api/presets     | Obtiene todos los presets         |
 | Get         | localhost:8080/api/presets/1 | Obtiene la ubicación del preset 1 |
+
+### Characters
+
+> La api expone en el endpoint /api/characters la información para los clientes relacionada con los personajes
+> del juego. Estos son métodos http y sus endpoints a los que el usuario tiene acceso
+
+| HTTP method | Endpoint                                | Resultado                                  |
+|-------------|-----------------------------------------|--------------------------------------------|
+| Get         | localhost:8080/api/characters           | Obtiene todos los personajes               |
+| Get         | localhost:8080/api/characters/1         | Obtiene la información del personaje 1     |
+| Get         | localhost:8080/api/characters/by-user/3 | Obtiene todos los personajes del usuario 3 |
+| Post        | localhost:8080/api/characters           | Permite crear un nuevo personaje           |
+| Delete      | localhost:8080/api/characters/1         | Elimina al personaje 1                     |
