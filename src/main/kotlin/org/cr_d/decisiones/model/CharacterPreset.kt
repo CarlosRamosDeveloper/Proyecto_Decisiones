@@ -9,5 +9,9 @@ data class CharacterPreset (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     @Column(nullable = false)
-    var race: String
+    val race: String,
+    @Column(nullable = false)
+    val sex: String,
+    @Column(nullable = false)
+    val description: String
 )

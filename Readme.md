@@ -145,13 +145,21 @@ TODO
 >La API expone en el endpoint /api/users la información para los clientes relacionada con los usuarios, estos son
 > los métodos http y los endpoints con ejemplos.
 
-| HTTP method |Endpoint| Resultado                      |
-|-------------|-|--------------------------------|
-| Get         |localhost:8080/api/users| Obtiene todos los usuarios     |
-| Get         |localhost:8080/api/users/1| Obtiene el usuario con el id 1 |
-| Get         |localhost:8080/api/users/email?email=carlos@mail.com| Obtiene el usuario por email   |
-| Post        |localhost:8080/api/users| Crea un usuario                |
-| Delete      |localhost:8080/api/users/3| Elimina al usuario con id 3    |
+| HTTP method | Endpoint                                             | Resultado                      |
+|-------------|------------------------------------------------------|--------------------------------|
+| Get         | localhost:8080/api/users                             | Obtiene todos los usuarios     |
+| Get         | localhost:8080/api/users/1                           | Obtiene el usuario con el id 1 |
+| Get         | localhost:8080/api/users/email?email=carlos@mail.com | Obtiene el usuario por email   |
+| Post        | localhost:8080/api/users                             | Crea un usuario                |
+| Delete      | localhost:8080/api/users/3                           | Elimina al usuario con id 3    |
+
+>Ejemplo del body de crear usuario
+> ``` Json 
+> {
+>   "username": String,
+>   "email": String,
+> }
+> ```
 
 ### Locations
 
@@ -185,3 +193,13 @@ TODO
 | Get         | localhost:8080/api/characters/by-user/3 | Obtiene todos los personajes del usuario 3 |
 | Post        | localhost:8080/api/characters           | Permite crear un nuevo personaje           |
 | Delete      | localhost:8080/api/characters/1         | Elimina al personaje 1                     |
+
+>Ejemplo del body de crear un personaje
+> ``` Json 
+> {
+>   "userId": Long,
+>   "presetId": Long,
+>   "name": String,
+>   "lastLocation": Long
+> }
+> ```
