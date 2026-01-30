@@ -31,7 +31,7 @@ class UserRestController (
 
     //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
     @DeleteMapping("/{id}")
-    fun deleteUserById(@PathVariable("id") id : Long){
+    fun deleteUser(@PathVariable("id") id : Long){
         userService.delete(id)
     }
 

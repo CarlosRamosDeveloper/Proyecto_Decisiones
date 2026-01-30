@@ -1,13 +1,15 @@
 package org.cr_d.decisiones.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 
 @Entity
 @Table(name = "player_characters")
+@JsonIgnoreProperties("hibernateLazyInitializer", "handler")
 class PlayerCharacter (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id", nullable = false)
     val userId: User,

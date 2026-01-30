@@ -1,7 +1,6 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.model.CharacterPreset
-import org.cr_d.decisiones.model.Location
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
