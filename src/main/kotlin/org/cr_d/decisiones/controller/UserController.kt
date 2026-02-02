@@ -1,13 +1,9 @@
 package org.cr_d.decisiones.controller
 
-import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/users")
@@ -16,25 +12,9 @@ class UserController (
 ) {
     @GetMapping("")
     fun getUsers(model: Model): String {
+        model.addAttribute("title", "Listado de Usuarios")
         model.addAttribute("users", userService.getAllUsers())
 
-        return "a"
+        return "user/list"
     }
-
-    @GetMapping("/new")
-    fun createUser(@ModelAttribute model: Model): String {
-        val emptyUser = User(0, "", email = "")
-
-        model.addAttribute("user", emptyUser)
-        model.addAttribute("title", "Agregar nuevo usuario")
-        return "a"
-    }
-
-    @PostMapping("")
-    fun saveUser(@ModelAttribute user: User): String {
-        userService.save(user)
-
-        return "A"
-    }
-
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}">Título</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a th:href="@{/}" class="btn btn-success mb-3">Crear Preset</a>
+        <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de usuario</th>
+            <th>Email</th>
+            <th>Personajes</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.characters.size()}"></td>
+            <td>
+                <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
+                <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Seguro?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
