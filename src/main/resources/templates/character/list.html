@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/}" class="btn btn-success mb-3">Crear NPC</a>
+        <a th:href="@{/}" class="btn btn-success mb-3">Crear Preset</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
@@ -17,16 +17,18 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Usuario</th>
             <th>Nombre</th>
-            <th>Ubicación</th>
+            <th>Última ubicación</th>
             <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="npc : ${npcs}">
-            <td th:text="${npc.id}"></td>
-            <td th:text="${npc.name}"></td>
-            <td th:text="${npc.location.name}"></td>
+        <tr th:each="character : ${characters}">
+            <td th:text="${character.id}"></td>
+            <td th:text="${character.userId.username}"></td>
+            <td th:text="${character.name}"></td>
+            <td th:text="${character.lastLocationId.name}"></td>
             <td>
                 <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
                 <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
