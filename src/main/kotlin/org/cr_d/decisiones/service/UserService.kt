@@ -13,5 +13,5 @@ class UserService(
     fun getUserById(id: Long): User? = repository.findByIdOrNull(id)
     fun getUserByEmail(email: String): User? = repository.findByEmail(email)
     fun save(user: User): User = repository.save(user)
-    fun delete(id: Long) = repository.deleteById(id)
+    fun delete(user: User) = repository.delete(user)
 }
