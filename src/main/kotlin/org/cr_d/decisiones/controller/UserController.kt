@@ -7,19 +7,21 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
+@RequestMapping("/users")
 class UserController (
     private val userService: UserService
 ) {
-    @GetMapping("/users")
+    @GetMapping("")
     fun getUsers(model: Model): String {
         model.addAttribute("users", userService.getAllUsers())
 
         return "a"
     }
 
-    @GetMapping("/users/new")
+    @GetMapping("/new")
     fun createUser(@ModelAttribute model: Model): String {
         val emptyUser = User(0, "", email = "")
 
@@ -28,7 +30,7 @@ class UserController (
         return "a"
     }
 
-    @PostMapping
+    @PostMapping("")
     fun saveUser(@ModelAttribute user: User): String {
         userService.save(user)
 

@@ -18,7 +18,7 @@ class NpcRestController (
     private val create: CreateNpcUseCase
 ){
     @GetMapping("")
-    fun getNpcs() : List<NonPlayableCharacter>{
+    fun getNpcList() : List<NonPlayableCharacter>{
         return npcService.findAll()
     }
 
@@ -26,7 +26,7 @@ class NpcRestController (
     fun getNpcById(@PathVariable("id") id : Long) : NonPlayableCharacter{
         return npcService.findById(id)
     }
-
+// TODO: Quitar del rest cuando lo haga en el nonrest
     @PostMapping("")
     fun createNpc(@RequestBody npc: NpcRequest) : NonPlayableCharacter{
         val newNpc = create.execute(npc)
