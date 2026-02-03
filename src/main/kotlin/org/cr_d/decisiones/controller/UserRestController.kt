@@ -1,8 +1,11 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.web.bind.annotation.*
+
+import org.cr_d.decisiones.dto.UserResponse
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
-import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/users")
@@ -10,18 +13,26 @@ class UserRestController (
     private val userService: UserService
 ){
     @GetMapping("")
-    fun getUsers() : List<User>{
-        return userService.getAllUsers()
+    fun getUsers() : List<UserResponse>{
+        return userService.getAllUsers().map{ it.toResponse() }
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable("id") id : Long) : User?{
-        return userService.getUserById(id)
+    fun getUserById(@PathVariable("id") id : Long) : UserResponse?{
+        val user = userService.getUserById(id)
+
+        if (user != null) return user.toResponse()
+
+        return null
     }
 
     @GetMapping("/email")
-    fun getUserByEmail(@RequestParam("email") email: String) : User?{
-        return userService.getUserByEmail(email)
+    fun getUserByEmail(@RequestParam("email") email: String) : UserResponse?{
+        val user = userService.getUserByEmail(email)
+
+        if (user != null) return user.toResponse()
+
+        return null
     }
 
     @PostMapping("")
@@ -37,5 +48,4 @@ class UserRestController (
             userService.delete(user)
         }
     }
-
 }

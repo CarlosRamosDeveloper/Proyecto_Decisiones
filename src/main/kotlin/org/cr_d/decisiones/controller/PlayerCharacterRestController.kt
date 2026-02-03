@@ -1,7 +1,8 @@
 package org.cr_d.decisiones.controller
 
+import org.cr_d.decisiones.dto.CharacterResponse
 import org.cr_d.decisiones.dto.PlayerCharacterRequest
-import org.cr_d.decisiones.model.PlayerCharacter
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
 import org.cr_d.decisiones.usecases.GetCharacterByUsernameUseCase
@@ -15,24 +16,29 @@ class PlayerCharacterRestController (
     private val getByUser: GetCharacterByUsernameUseCase
 ) {
     @GetMapping("")
-    fun findAll(): List<PlayerCharacter> {
-        return characterService.getAllCharacters()
+    fun findAll(): List<CharacterResponse> {
+        val characters = characterService.getAllCharacters().map{ it.toResponse() }
+
+        return characters;
     }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable("id") id : Long): PlayerCharacter? {
-        return characterService.getCharacterById(id)
+    fun findById(@PathVariable("id") id : Long): CharacterResponse? {
+        val character = characterService.getCharacterById(id)
+        if(character != null) return character.toResponse()
+
+        return null
     }
 
     @GetMapping("/by-user/{userId}")
-    fun findByUsername(@PathVariable("userId") userId : Long) : List<PlayerCharacter>? {
-        return getByUser.execute(userId)
+    fun findByUsername(@PathVariable("userId") userId : Long) : List<CharacterResponse>? {
+        return getByUser.execute(userId).map{ it.toResponse() }
     }
 
     @PostMapping("")
     fun createCharacter(@RequestBody character: PlayerCharacterRequest) {
-
         val newCharacter = create.execute(character)
+
         characterService.save(newCharacter)
     }
 

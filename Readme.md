@@ -161,6 +161,11 @@ TODO
 > }
 > ```
 
+>Ejemplo de respuesta de usuario
+> ``` json 
+> 
+> ```
+
 ### Locations
 
 > La API expone en el endpoint /api/locations la información para los clientes relacionada con 
