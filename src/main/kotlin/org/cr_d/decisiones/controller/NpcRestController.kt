@@ -1,6 +1,8 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.NpcRequest
+import org.cr_d.decisiones.dto.NpcResponse
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.model.NonPlayableCharacter
 import org.cr_d.decisiones.service.NpcService
 import org.cr_d.decisiones.usecases.CreateNpcUseCase
@@ -18,13 +20,17 @@ class NpcRestController (
     private val create: CreateNpcUseCase
 ){
     @GetMapping("")
-    fun getNpcList() : List<NonPlayableCharacter>{
-        return npcService.findAll()
+    fun getNpcList() : List<NpcResponse>{
+        return npcService.findAll().map { it.toResponse() }
     }
 
     @GetMapping("/{id}")
-    fun getNpcById(@PathVariable("id") id : Long) : NonPlayableCharacter{
-        return npcService.findById(id)
+    fun getNpcById(@PathVariable("id") id : Long) : NpcResponse? {
+        val npc = npcService.findById(id)
+
+        if (npc != null) return npc.toResponse()
+
+        return null
     }
 // TODO: Quitar del rest cuando lo haga en el nonrest
     @PostMapping("")
