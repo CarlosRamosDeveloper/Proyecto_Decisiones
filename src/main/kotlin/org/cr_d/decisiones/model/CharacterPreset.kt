@@ -13,5 +13,8 @@ data class CharacterPreset (
     @Column(nullable = false)
     val sex: String,
     @Column(nullable = false)
-    val description: String
+    val description: String,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "initial_location", nullable = false)
+    val location: Location,
 )
