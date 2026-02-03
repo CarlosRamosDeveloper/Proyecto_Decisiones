@@ -162,8 +162,22 @@ TODO
 > ```
 
 >Ejemplo de respuesta de usuario
-> ``` json 
-> 
+> ``` json
+> { 
+>   "id": Long,
+>   "username": String,
+>   "email": String,
+>   "characters": [
+>       {
+>           "id": Long,
+>           "user": String,
+>           "name": String,
+>           "location": String,
+>           "race": String,
+>           "sex": String
+>       }
+>   ]
+> }
 > ```
 
 ### Locations

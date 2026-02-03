@@ -8,6 +8,7 @@ fun User.toResponse(): UserResponse {
         this.id!!,
         this.username,
         this.email,
+        this.characters.map{ it.toResponse() }
     )
 }
 
