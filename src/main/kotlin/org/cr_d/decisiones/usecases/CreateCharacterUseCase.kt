@@ -16,7 +16,7 @@ class CreateCharacterUseCase (
     fun execute(character: PlayerCharacterRequest) : PlayerCharacter {
         val user = userService.getUserById(character.userId) ?: throw RuntimeException("Usuario no encontrado")
         val preset = presetService.getPresetById(character.presetId) ?: throw RuntimeException("Preset no encontrado")
-        val location = locationService.getLocationById(character.lastLocation) ?: throw RuntimeException("Ubicación no encontrada")
+        val location = locationService.getLocationById(preset.location.id!!) ?: throw RuntimeException("Ubicación no encontrada")
 
         return PlayerCharacter(
             id = null,
