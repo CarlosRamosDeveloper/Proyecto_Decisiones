@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Formulario Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <form th:object="${location}" method="post"
+          th:action="${location.id} != null ? @{'/locations/update/' + ${location.id}} : @{'/locations'}">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" th:field="*{name}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" th:field="*{description}" class="form-control" required>
+        </div>
+
+        <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/locations}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

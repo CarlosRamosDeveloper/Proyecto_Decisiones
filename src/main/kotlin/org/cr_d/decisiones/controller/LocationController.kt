@@ -1,11 +1,15 @@
 package org.cr_d.decisiones.controller
 
+import org.cr_d.decisiones.dto.CharacterPresetRequest
+import org.cr_d.decisiones.dto.LocationRequest
 import org.cr_d.decisiones.model.Location
 import org.cr_d.decisiones.model.NonPlayableCharacter
 import org.cr_d.decisiones.service.LocationService
+import org.cr_d.decisiones.usecases.CreateLocationUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/locations")
 class LocationController(
-    private val locationService: LocationService
+    private val locationService: LocationService,
+    private val createLocation: CreateLocationUseCase
 ) {
     @GetMapping("")
     fun getLocations(model: Model): String {
@@ -35,10 +40,23 @@ class LocationController(
         return "location/detail"
     }
 
+    @GetMapping("/new")
+    fun createPreset(model: Model): String {
+        val emptyLocation = LocationRequest(null, "","")
+        model.addAttribute("location", emptyLocation)
+        model.addAttribute("title", "Crear Ubicación")
+
+        return "location/form"
+    }
+
     //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
     @PostMapping("")
-    fun createLocation(@RequestBody location: Location) {
-        locationService.save(location)
+    fun createLocation(@ModelAttribute location: LocationRequest): String {
+        val newLocation = createLocation.execute(location)
+        locationService.save(newLocation)
+
+        return "redirect:/locations"
+
     }
 
     @GetMapping("/error")

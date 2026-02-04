@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class CreateLocationUseCase {
-    fun execute(location: LocationRequest): Location {
+    fun execute(location: LocationRequest, id: Long? = null): Location {
         return Location(
-            id = null,
+            id = id,
             name = location.name,
             description = location.description,
         )
