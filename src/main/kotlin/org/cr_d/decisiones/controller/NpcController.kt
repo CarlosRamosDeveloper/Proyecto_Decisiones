@@ -1,8 +1,7 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.NpcRequest
-import org.cr_d.decisiones.dto.UserRequest
-import org.cr_d.decisiones.model.User
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.service.NpcService
@@ -29,7 +28,7 @@ class NpcController (
 
     @GetMapping("/{id}")
     fun getNpcById(@PathVariable id: Long, model: Model): String {
-        val npc = npcService.findById(id) ?: return "redirect:/npc/error"
+        val npc = npcService.findById(id).toResponse()
         model.addAttribute("title", "Listado de Usuarios")
         model.addAttribute("npc", npc)
 
