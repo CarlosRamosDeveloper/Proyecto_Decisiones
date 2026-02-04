@@ -25,6 +25,15 @@ El equipo del usuario requiere de la instalación del siguiente software para qu
 - Java >= 17
 - Intellij IDEA o VSC
 
+## Modo de empleo
+
+### Importar base de datos
+
+``` bash
+docker exec -i mysql_db mysql \
+-u root -prootPassword decisions_database < decisions_database.sql
+```
+
 ## Tables
 
 ### users
