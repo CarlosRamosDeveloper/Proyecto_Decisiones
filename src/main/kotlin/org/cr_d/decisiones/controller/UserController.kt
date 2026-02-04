@@ -1,6 +1,7 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.UserRequest
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
 import org.springframework.stereotype.Controller
@@ -16,7 +17,7 @@ class UserController (
     @GetMapping("")
     fun getUsers(model: Model): String {
         model.addAttribute("title", "Listado de Usuarios")
-        model.addAttribute("users", userService.getAllUsers())
+        model.addAttribute("users", userService.getAllUsers().map{it.toResponse()})
 
         return "user/list"
     }
@@ -25,7 +26,7 @@ class UserController (
     fun getUserById(@PathVariable id: Long, model: Model): String {
         val user = userService.getUserById(id) ?: return "redirect:/user/error"
         model.addAttribute("title", "Listado de Usuarios")
-        model.addAttribute("user", user)
+        model.addAttribute("user", user.toResponse())
 
         return "user/detail"
     }
@@ -47,7 +48,7 @@ class UserController (
     }
 
     @GetMapping("/edit/{id}")
-    fun showEditForm(@PathVariable("id") id: Long, model: Model): String {
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
         val user = userService.getUserById(id) ?: return "redirect:/user/error"
         model.addAttribute("user", user)
         model.addAttribute("title", "Actualizar Usuario")

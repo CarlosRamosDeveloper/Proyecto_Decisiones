@@ -18,7 +18,7 @@ class UserRestController (
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable("id") id : Long) : UserResponse?{
+    fun getUserById(@PathVariable id : Long) : UserResponse?{
         val user = userService.getUserById(id)
 
         if (user != null) return user.toResponse()
@@ -42,7 +42,7 @@ class UserRestController (
 
     //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
     @DeleteMapping("/{id}")
-    fun deleteUser(@PathVariable("id") id : Long){
+    fun deleteUser(@PathVariable id : Long){
         val user = userService.getUserById(id)
         if (user != null){
             userService.delete(user)
