@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${location.name}">Detalle Ubicación</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 th:text="${location.name}">Detalle de Usuario</h1>
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> <span th:text="${location.id}">1</span></p>
+            <p class="card-text"><strong>Nombre:</strong> <span th:text="${location.name}">Madrid</span></p>
+            <p class="card-text"><strong>Descripción:</strong> <span th:text="${location.description}">Hace calor</span></p>
+
+            <h6 class="mt-4">Npcs asociados</h6>
+            <div th:if="${relatedNpcs.isEmpty()}">
+                <p>Esta ubicación no tiene npcs asociados</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a th:href="@{/locations/edit/{id}(id=${location.id})}" class="btn btn-warning">Editar</a>
+        <a th:href="@{/locations/delete/{id}(id=${location.id})}"
+           class="btn btn-danger"
+           onclick="return confirm('¿Seguro que quieres borrar este usuario?')">Borrar</a>
+        <a th:href="@{/locations}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+
+</div>
+</body>
+</html>

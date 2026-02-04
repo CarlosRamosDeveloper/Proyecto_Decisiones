@@ -30,14 +30,13 @@ class CharacterPresetController (
 
     @GetMapping("/{id}")
     fun getPresetById(@PathVariable id: Long, model: Model): String {
-        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/user/error"
+        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/preset/error"
         model.addAttribute("title", "Información del preset")
         model.addAttribute("preset", preset)
 
         return "preset/detail"
     }
 
-    // TODO: Hacer el controlador de ubicaciones ASAP
     @GetMapping("/new")
     fun createPreset(model: Model): String {
         val emptyPreset = CharacterPresetRequest(null,"", "", 1, "")
