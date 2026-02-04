@@ -12,6 +12,8 @@
     <form th:object="${preset}" method="post"
           th:action="${preset.id} != null ? @{'/presets/update/' + ${preset.id}} : @{'/presets'}">
 
+        <input type="hidden" th:field="*{id}" />
+
         <div class="mb-3">
             <label class="form-label">Raza</label>
             <input type="text" th:field="*{race}" class="form-control" required>

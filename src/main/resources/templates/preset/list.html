@@ -28,9 +28,9 @@
             <td th:text="${preset.race}"></td>
             <td th:text="${preset.sex}"></td>
             <td>
-                <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
-                <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
-                <a th:href="@{/}"
+                <a th:href="@{/presets/{id}(id=${preset.id})}" class="btn btn-info  btn-sm">Detalles</a>
+                <a th:href="@{/presets/edit/{id}(id=${preset.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/presets/delete/{id}(id=${preset.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('¿Seguro?')">Eliminar</a>
             </td>
