@@ -16,7 +16,7 @@ class LocationRestController (
     }
 
     @GetMapping("/{id}")
-    fun getLocationById(@PathVariable("id") id : Long): LocationResponse? {
+    fun getLocationById(@PathVariable id : Long): LocationResponse? {
         val location = locationService.getLocationById(id)
 
         if(location != null) return location.toResponse()
