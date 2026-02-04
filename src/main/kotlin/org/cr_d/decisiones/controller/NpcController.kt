@@ -17,6 +17,4 @@ class NpcController (
 
         return "npc/list"
     }
-
-
 }
