@@ -1,10 +1,8 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.CharacterPresetRequest
-import org.cr_d.decisiones.dto.UserRequest
-import org.cr_d.decisiones.model.CharacterPreset
-import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.CharacterPresetService
+import org.cr_d.decisiones.usecases.CreateCharacterPresetUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/presets")
 class CharacterPresetController (
-    private val characterPresetService: CharacterPresetService
+    private val characterPresetService: CharacterPresetService,
+    private val createPreset: CreateCharacterPresetUseCase
 ){
     @GetMapping("")
     fun getPresets(model: Model): String{
@@ -35,9 +34,11 @@ class CharacterPresetController (
         return "preset/detail"
     }
 
+    // TODO: poner una lista en el formulario para elegir ubicación
+    // TODO: Hacer el controlador de ubicaciones ASAP
     @GetMapping("/new")
     fun createPreset(model: Model): String {
-        val emptyPreset = CharacterPresetRequest(0,"", "", 0, "")
+        val emptyPreset = CharacterPresetRequest(null,"", "", 1, "")
         model.addAttribute("preset", emptyPreset)
         model.addAttribute("title", "Crear Preset")
 
@@ -45,8 +46,10 @@ class CharacterPresetController (
     }
 
     @PostMapping("")
-    fun savePreset(@ModelAttribute preset : CharacterPreset): String {
-        characterPresetService.save(preset)
+    fun savePreset(@ModelAttribute preset : CharacterPresetRequest): String {
+        val newPreset = createPreset.execute(preset)
+
+        if (newPreset != null) characterPresetService.save(newPreset)
 
         return "redirect:/presets"
     }

@@ -3,8 +3,7 @@ package org.cr_d.decisiones.controller
 import org.cr_d.decisiones.dto.CharacterPresetRequest
 import org.cr_d.decisiones.model.CharacterPreset
 import org.cr_d.decisiones.service.CharacterPresetService
-import org.cr_d.decisiones.service.LocationService
-import org.cr_d.decisiones.usecases.CreateCharacterPreset
+import org.cr_d.decisiones.usecases.CreateCharacterPresetUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/presets")
 class CharacterPresetRestRepository (
     private val characterPresetService: CharacterPresetService,
-    private val createCharacterPreset: CreateCharacterPreset
+    private val createCharacterPreset: CreateCharacterPresetUseCase
 ){
     @GetMapping("")
     fun getPresets() : List<CharacterPreset>{

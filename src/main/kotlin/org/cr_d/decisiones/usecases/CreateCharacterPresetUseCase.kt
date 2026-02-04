@@ -6,7 +6,7 @@ import org.cr_d.decisiones.service.LocationService
 import org.springframework.stereotype.Service
 
 @Service
-class CreateCharacterPreset(
+class CreateCharacterPresetUseCase(
     private val locationService: LocationService,
 ) {
     fun execute(preset: CharacterPresetRequest): CharacterPreset? {
