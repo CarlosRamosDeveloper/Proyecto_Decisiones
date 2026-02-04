@@ -25,14 +25,39 @@ El equipo del usuario requiere de la instalación del siguiente software para qu
 - Java >= 17
 - Intellij IDEA o VSC
 
-## Modo de empleo
+## Iniciando el proyecto
 
-### Importar base de datos
+### Descargar el repositorio
+
+En el terminal escribimos:
+
+``` bash
+git clone https://github.com/CarlosRamosDeveloper/Proyecto_Decisiones.git
+```
+
+### Preparar el entorno
+
+- Activar el daemon de docker
+- Mover decisions_database.sql y docker-compose.yml a la raiz del proyecto
+
+### Levantar el servidor
+
+1. Dirigirse a la ubicación del proyecto.
+2. Ejecutar el comando:
+
+``` bash
+docker compose up -d
+```
+3. Importamos la base de datos:
+
+Nota: Es necesario tener el fichero decisions_database.sql y docker-compose.yml en la raiz del proyecto.
 
 ``` bash
 docker exec -i mysql_db mysql \
 -u root -prootPassword decisions_database < decisions_database.sql
 ```
+
+4. Abrimos el IDE y levantamos el servidor ejecutándolo.
 
 ## Tables
 
@@ -119,27 +144,6 @@ docker exec -i mysql_db mysql \
 - npc_id
 - location_id
 
-## Iniciando el proyecto
-
-### Descargar el repositorio
-
-En el terminal escribimos:
-
-``` bash
-git clone https://github.com/CarlosRamosDeveloper/Proyecto_Decisiones.git
-```
-
-### Levantar el servidor
-
-1. Abrir el daemon de docker.
-2. Dirigirse a la ubicación del proyecto.
-3. Ejecutar el comando:
-
-``` bash
-docker compose up -d
-```
-
-4. Abrimos el IDE y levantamos el servidor ejecutándolo.
 
 ## Gestión
 
@@ -204,9 +208,9 @@ TODO
 >La api expone en el endpoint /api/presets la información para los clientes relacionada con los presets
 > del juego. Estos son los métodos http y los endpoints a los que el usuario tiene acceso.
 
-| HTTP method | Endpoint                       | Resultado                         |
-|-------------|--------------------------------|-----------------------------------|
-| Get         | localhost:8080/api/presets     | Obtiene todos los presets         |
+| HTTP method | Endpoint                     | Resultado                         |
+|-------------|------------------------------|-----------------------------------|
+| Get         | localhost:8080/api/presets   | Obtiene todos los presets         |
 | Get         | localhost:8080/api/presets/1 | Obtiene la ubicación del preset 1 |
 
 ### Characters
