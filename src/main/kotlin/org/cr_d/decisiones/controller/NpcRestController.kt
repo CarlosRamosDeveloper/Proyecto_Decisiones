@@ -1,5 +1,5 @@
 package org.cr_d.decisiones.controller
-
+/*
 import org.cr_d.decisiones.dto.NpcRequest
 import org.cr_d.decisiones.dto.NpcResponse
 import org.cr_d.decisiones.mapper.toResponse
@@ -25,7 +25,7 @@ class NpcRestController (
     }
 
     @GetMapping("/{id}")
-    fun getNpcById(@PathVariable("id") id : Long) : NpcResponse? {
+    fun getNpcById(@PathVariable id : Long) : NpcResponse? {
         val npc = npcService.findById(id)
 
         if (npc != null) return npc.toResponse()
@@ -40,3 +40,5 @@ class NpcRestController (
         return npcService.save(newNpc)
     }
 }
+
+ */

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Formulario Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <form th:object="${npc}" method="post"
+          th:action="${npc.id} != null ? @{'/npcs/update/' + ${npc.id}} : @{'/npcs'}">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Preset</label>
+            <select th:field="*{presetId}" class="form-control" required>
+                <option th:each="preset : ${presets}"
+                        th:value="${preset.id}"
+                        th:text="|${preset.race} - ${preset.sex}|"
+                        th:selected="${npc.presetId == preset.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" th:field="*{name}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" th:field="*{description}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ubicación</label>
+            <select th:field="*{locationId}" class="form-control" required>
+                <option th:each="location : ${locations}"
+                        th:value="${location.id}"
+                        th:text="${location.name}"
+                        th:selected="${npc.locationId == location.id}">
+                </option>
+            </select>
+        </div>
+
+        <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/presets}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

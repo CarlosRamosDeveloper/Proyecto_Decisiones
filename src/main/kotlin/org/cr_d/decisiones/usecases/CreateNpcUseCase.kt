@@ -11,12 +11,12 @@ class CreateNpcUseCase (
     private val presetService: CharacterPresetService,
     private val locationService: LocationService,
 ){
-    fun execute(npc: NpcRequest) : NonPlayableCharacter{
+    fun execute(npc: NpcRequest, id: Long? = null) : NonPlayableCharacter{
         val preset = presetService.getPresetById(npc.presetId) ?: throw RuntimeException("Preset no encontrado")
         val location = locationService.getLocationById(npc.locationId) ?: throw RuntimeException("Location no encontrado")
 
         return NonPlayableCharacter(
-            id = null,
+            id = id,
             preset = preset,
             name = npc.name,
             location = location,
