@@ -59,6 +59,13 @@ docker exec -i mysql_db mysql \
 
 4. Abrimos el IDE y levantamos el servidor ejecutándolo.
 
+>Nota: Si queremos copiar la base de datos, ejecutaron el comando en el terminal, a la altura del docker-compose.yml
+> 
+> ``` bash
+> docker exec mysql_db mysqldump \
+> -u root -prootPassword decisions_database > decisions_database.sql
+> ```
+
 ## Tables
 
 ### users

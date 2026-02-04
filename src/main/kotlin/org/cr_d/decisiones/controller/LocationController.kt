@@ -40,25 +40,6 @@ class LocationController(
         return "location/detail"
     }
 
-    //TODO: Eliminar el crear y eliminar, permitir modificar
-    @GetMapping("/new")
-    fun createPreset(model: Model): String {
-        val emptyLocation = LocationRequest(null, "","")
-        model.addAttribute("location", emptyLocation)
-        model.addAttribute("title", "Crear Ubicación")
-
-        return "location/form"
-    }
-
-    //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
-    @PostMapping("")
-    fun createLocation(@ModelAttribute location: LocationRequest): String {
-        val newLocation = createLocation.execute(location)
-        locationService.save(newLocation)
-
-        return "redirect:/locations"
-    }
-
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable("id") id: Long, model: Model): String {
         val location = locationService.getLocationById(id) ?: return "redirect:/location/error"

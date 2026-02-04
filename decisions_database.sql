@@ -40,7 +40,7 @@ CREATE TABLE `character_presets` (
 
 LOCK TABLES `character_presets` WRITE;
 /*!40000 ALTER TABLE `character_presets` DISABLE KEYS */;
-INSERT INTO `character_presets` VALUES (1,'Esbelto y silencioso como el viento entre los árboles, el elfo posee rasgos afilados y una mirada antigua que parece haber visto siglos pasar.','Elfo','Másculino',1),(2,'De belleza etérea, su presencia es tan hipnótica como la luz de la luna entre las hojas.','Elfo','Femenino',1),(3,'Sus cuerpos son fuertes y resistentes, sus brazos gruesos como troncos y su espalda curtida por el trabajo y la batalla.','Enano','Masculino',2),(4,'La enana comparte la fortaleza de su pueblo, con una presencia imponente pese a su estatura. Sus rasgos son duros pero orgullosos, y su mirada refleja determinación inquebrantable.','Enano','Femenino',2),(5,'El humano es tan diverso como impredecible. De complexión y rasgos variables, destaca por su adaptabilidad y ambición.','Humano','Masculino',3),(6,'La humana refleja la fuerza de la emoción y la voluntad. Puede ser tan feroz como compasiva, tan sabia como impulsiva.','Humano','Femenino',3);
+INSERT INTO `character_presets` VALUES (1,'Esbeltos y silenciosos como el viento entre los árboles, los elfos poseen rasgos afilados y una mirada antigua que parece haber visto siglos pasar.','Elfo','Másculino',1),(2,'Esbeltos y silenciosos como el viento entre los árboles, los elfos poseen rasgos afilados y una mirada antigua que parece haber visto siglos pasar.','Elfo','Femenino',1),(3,'Sus cuerpos son fuertes y resistentes, sus brazos gruesos como troncos y sus espaldas curtida por el trabajo y la batalla.','Enano','Masculino',2),(4,'Sus cuerpos son fuertes y resistentes, sus brazos gruesos como troncos y sus espaldas curtida por el trabajo y la batalla.','Enano','Femenino',2),(5,'Los humanos son tan diversos como impredecibles. De complexión y rasgos variables, destaca por su adaptabilidad y ambición.','Humano','Masculino',3),(6,'Los humanos son tan diversos como impredecibles. De complexión y rasgos variables, destaca por su adaptabilidad y ambición.','Humano','Femenino',3);
 /*!40000 ALTER TABLE `character_presets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-04 14:37:03
+-- Dump completed on 2026-02-04 17:55:00

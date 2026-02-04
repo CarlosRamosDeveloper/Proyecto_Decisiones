@@ -1,17 +1,14 @@
 package org.cr_d.decisiones.controller
 
-import org.cr_d.decisiones.dto.LocationRequest
 import org.cr_d.decisiones.dto.LocationResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.LocationService
-import org.cr_d.decisiones.usecases.CreateLocationUseCase
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/locations")
 class LocationRestController (
     private val locationService: LocationService,
-    private val createLocation: CreateLocationUseCase
 ){
     @GetMapping("")
     fun getLocations(): List<LocationResponse>{

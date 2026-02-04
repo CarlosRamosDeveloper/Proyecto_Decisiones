@@ -9,7 +9,7 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/presets/new}" class="btn btn-success mb-3">Crear Preset</a>
+        <div style="width: 120px;"></div>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
@@ -30,9 +30,6 @@
             <td>
                 <a th:href="@{/presets/{id}(id=${preset.id})}" class="btn btn-info  btn-sm">Detalles</a>
                 <a th:href="@{/presets/edit/{id}(id=${preset.id})}" class="btn btn-warning btn-sm">Editar</a>
-                <a th:href="@{/presets/delete/{id}(id=${preset.id})}"
-                   class="btn btn-danger btn-sm"
-                   onclick="return confirm('¿Seguro?')">Eliminar</a>
             </td>
         </tr>
         </tbody>
