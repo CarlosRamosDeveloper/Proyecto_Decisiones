@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Formulario Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <form th:object="${preset}" method="post"
+          th:action="${preset.id} != null ? @{'/presets/update/' + ${preset.id}} : @{'/presets'}">
+
+        <div class="mb-3">
+            <label class="form-label">Raza</label>
+            <input type="text" th:field="*{race}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sexo</label>
+            <input type="text" th:field="*{sex}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <input type="text" th:field="*{description}" class="form-control" required>
+        </div>
+
+        <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/presets}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

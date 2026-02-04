@@ -21,7 +21,7 @@ class UserController (
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable("id") id: Long, model: Model): String {
+    fun getUserById(@PathVariable id: Long, model: Model): String {
         val user = userService.getUserById(id) ?: return "redirect:/user/error"
         model.addAttribute("title", "Listado de Usuarios")
         model.addAttribute("user", user)
