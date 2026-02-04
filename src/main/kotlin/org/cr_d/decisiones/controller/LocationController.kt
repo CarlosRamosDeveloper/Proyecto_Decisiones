@@ -40,6 +40,7 @@ class LocationController(
         return "location/detail"
     }
 
+    //TODO: Eliminar el crear y eliminar, permitir modificar
     @GetMapping("/new")
     fun createPreset(model: Model): String {
         val emptyLocation = LocationRequest(null, "","")
@@ -56,7 +57,24 @@ class LocationController(
         locationService.save(newLocation)
 
         return "redirect:/locations"
+    }
 
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable("id") id: Long, model: Model): String {
+        val location = locationService.getLocationById(id) ?: return "redirect:/location/error"
+        val updatedLocation = LocationRequest(id, location.name, location.description)
+        model.addAttribute("location", updatedLocation)
+        model.addAttribute("title", "Actualizar ubicación")
+
+        return "location/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun updatePreset(@PathVariable id: Long, @ModelAttribute location : LocationRequest): String {
+        val updatedLocation = createLocation.execute(location, id)
+        locationService.save(updatedLocation)
+
+        return "redirect:/locations"
     }
 
     @GetMapping("/error")

@@ -28,7 +28,7 @@
 
             <td>
                 <a th:href="@{/locations/{id}(id=${location.id})}" class="btn btn-info  btn-sm">Detalles</a>
-                <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/locations/edit/{id}(id=${location.id})}" class="btn btn-warning btn-sm">Editar</a>
                 <a th:href="@{/}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('¿Seguro?')">Eliminar</a>

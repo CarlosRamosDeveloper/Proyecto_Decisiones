@@ -12,6 +12,8 @@
     <form th:object="${location}" method="post"
           th:action="${location.id} != null ? @{'/locations/update/' + ${location.id}} : @{'/locations'}">
 
+        <input type="hidden" th:field="*{id}" />
+
         <div class="mb-3">
             <label class="form-label">Nombre</label>
             <input type="text" th:field="*{name}" class="form-control" required>

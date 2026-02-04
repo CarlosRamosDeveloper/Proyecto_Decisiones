@@ -26,12 +26,4 @@ class LocationRestController (
 
         return null
     }
-
-    //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
-    @PostMapping("")
-    fun createLocation(@RequestBody location: LocationRequest){
-        val newLocation = createLocation.execute(location)
-
-        locationService.save(newLocation)
-    }
 }
