@@ -54,4 +54,32 @@ class NpcController (
 
         return "redirect:/npcs"
     }
+
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val npc = npcService.findById(id)
+        val npcToUpdate = NpcRequest(id, npc.preset.id!!, npc.name, npc.location.id!!, npc.description)
+
+        model.addAttribute("npc", npcToUpdate)
+        model.addAttribute("locations", locationService.getAllLocations())
+        model.addAttribute("presets", presetService.getAllPresets())
+        model.addAttribute("title", "Actualizar NPC")
+
+        return "npc/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun updateNpc(@PathVariable id: Long, @ModelAttribute npc: NpcRequest): String {
+        val updatedNpc = createNpc.execute(npc, id)
+        npcService.save(updatedNpc)
+
+        return "redirect:/npcs"
+    }
+
+    @GetMapping("/delete/{id}")
+    fun deleteNpc(@PathVariable id: Long): String {
+        npcService.deleteById(id)
+
+        return "redirect:/npcs"
+    }
 }

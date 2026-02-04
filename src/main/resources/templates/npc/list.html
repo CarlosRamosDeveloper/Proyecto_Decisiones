@@ -29,8 +29,8 @@
             <td th:text="${npc.location.name}"></td>
             <td>
                 <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
-                <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
-                <a th:href="@{/}"
+                <a th:href="@{/npcs/edit/{id}(id=${npc.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/npcs/delete/{id}(id=${npc.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('¿Seguro?')">Eliminar</a>
             </td>
