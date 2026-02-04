@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/presets")
 class CharacterPresetRestRepository (
     private val characterPresetService: CharacterPresetService,
-    private val createCharacterPreset: CreateCharacterPresetUseCase
 ){
     @GetMapping("")
     fun getPresets() : List<CharacterPreset>{
@@ -25,13 +24,5 @@ class CharacterPresetRestRepository (
     @GetMapping("/{id}")
     fun getPreset(@PathVariable("id") id : Long) : CharacterPreset?{
         return characterPresetService.getPresetById(id)
-    }
-
-    //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
-    @PostMapping("")
-    fun createLocation(@RequestBody preset: CharacterPresetRequest){
-        val newPreset = createCharacterPreset.execute(preset)
-
-        if (newPreset != null) characterPresetService.save(newPreset)
     }
 }

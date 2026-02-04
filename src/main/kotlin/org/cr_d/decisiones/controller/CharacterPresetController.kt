@@ -36,7 +36,7 @@ class CharacterPresetController (
 
         return "preset/detail"
     }
-
+    // TODO: Eliminar antes de entregar
     @GetMapping("/new")
     fun createPreset(model: Model): String {
         val emptyPreset = CharacterPresetRequest(null,"", "", 1, "")
@@ -47,6 +47,7 @@ class CharacterPresetController (
         return "preset/form"
     }
 
+    // TODO: Eliminar antes de entregar
     @PostMapping("")
     fun savePreset(@ModelAttribute preset : CharacterPresetRequest): String {
         val newPreset = createPreset.execute(preset)
@@ -75,7 +76,7 @@ class CharacterPresetController (
 
         return "redirect:/presets"
     }
-
+    // TODO: Eliminar antes de entregar
     @GetMapping("/delete/{id}")
     fun deleteUser(@PathVariable id: Long): String {
         characterPresetService.deleteById(id)
