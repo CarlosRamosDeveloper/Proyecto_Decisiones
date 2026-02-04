@@ -2,6 +2,7 @@ package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.CharacterPresetRequest
 import org.cr_d.decisiones.service.CharacterPresetService
+import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.usecases.CreateCharacterPresetUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/presets")
 class CharacterPresetController (
     private val characterPresetService: CharacterPresetService,
+    private val locationService: LocationService,
     private val createPreset: CreateCharacterPresetUseCase
 ){
     @GetMapping("")
@@ -40,6 +42,7 @@ class CharacterPresetController (
     fun createPreset(model: Model): String {
         val emptyPreset = CharacterPresetRequest(null,"", "", 1, "")
         model.addAttribute("preset", emptyPreset)
+        model.addAttribute("locations", locationService.getAllLocations())
         model.addAttribute("title", "Crear Preset")
 
         return "preset/form"

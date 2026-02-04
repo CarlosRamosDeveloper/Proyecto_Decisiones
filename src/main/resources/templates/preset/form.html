@@ -27,6 +27,17 @@
             <input type="text" th:field="*{description}" class="form-control" required>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Ubicación</label>
+            <select th:field="*{locationId}" class="form-control" required>
+                <option th:each="location : ${locations}"
+                        th:value="${location.id}"
+                        th:text="${location.name}"
+                        th:selected="${preset.locationId == location.id}">
+                </option>
+            </select>
+        </div>
+
         <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
         <a th:href="@{/presets}" class="btn btn-secondary">Cancelar</a>
     </form>
