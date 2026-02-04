@@ -30,9 +30,9 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.characters.size()}"></td>
             <td>
-                <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
-                <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
-                <a th:href="@{/}"
+                <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-info  btn-sm">Detalles</a>
+                <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/users/delete/{id}(id=${user.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('¿Seguro?')">Eliminar</a>
             </td>
