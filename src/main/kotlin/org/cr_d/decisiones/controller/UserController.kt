@@ -1,5 +1,6 @@
 package org.cr_d.decisiones.controller
 
+import org.cr_d.decisiones.dto.UserRequest
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
 import org.springframework.stereotype.Controller
@@ -30,11 +31,11 @@ class UserController (
 
     @GetMapping("/new")
     fun createUser(model: Model): String {
-        val emptyUser = User(null, "", "",)
+        val emptyUser = UserRequest()
         model.addAttribute("user", emptyUser)
         model.addAttribute("title", "Crear Usuario")
 
-        return "users/form"
+        return "user/form"
     }
 
     @PostMapping("")
@@ -67,7 +68,7 @@ class UserController (
 
     @GetMapping("/error")
     fun userError(): String {
-        return "users/error"
+        return "user/error"
     }
 
     @GetMapping("/boom")
