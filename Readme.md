@@ -210,6 +210,25 @@ TODO
 | Get         | localhost:8080/api/locations   | Obtiene todas las ubicaciones    |
 | Get         | localhost:8080/api/locations/1 | Obtiene la ubicación con el id 1 |
 
+>Ejemplo de respuesta de ubicación
+> ``` json
+> {
+>   "id": Long,
+>   "name": String,
+>   "description": String,
+>   "npcs": [
+>       {
+>           "id": Long,
+>           "name": String,
+>           "race": String,
+>           "sex": String,
+>           "description": String,
+>           "location": String
+>       }
+>    ]
+> }
+> ```
+
 ### Presets
 
 >La api expone en el endpoint /api/presets la información para los clientes relacionada con los presets
@@ -219,6 +238,17 @@ TODO
 |-------------|------------------------------|-----------------------------------|
 | Get         | localhost:8080/api/presets   | Obtiene todos los presets         |
 | Get         | localhost:8080/api/presets/1 | Obtiene la ubicación del preset 1 |
+
+>Ejemplo de respuesta de preset
+> ``` json
+> {
+>    "id": Long,
+>    "race": String,
+>    "sex": String,
+>    "location": String,
+>    "description": String
+> }
+> ```
 
 ### Characters
 
@@ -239,6 +269,17 @@ TODO
 >   "userId": Long,
 >   "presetId": Long,
 >   "name": String,
->   "lastLocation": Long
+> }
+> ```
+
+>Ejemplo de respuesta de personaje
+> ``` json
+> {
+>   "id": Long,
+>   "user": String,
+>   "name": String,
+>   "location": String,
+>   "race": String,
+>   "sex": String
 > }
 > ```
