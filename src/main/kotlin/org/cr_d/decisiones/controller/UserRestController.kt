@@ -40,7 +40,6 @@ class UserRestController (
         userService.save(user)
     }
 
-    //TODO: Eliminar del rest controller cuando esté corriendo el modo admin
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id : Long){
         val user = userService.getUserById(id)
