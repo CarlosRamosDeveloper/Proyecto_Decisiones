@@ -1,7 +1,7 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.CharacterResponse
-import org.cr_d.decisiones.dto.PlayerCharacterRequest
+import org.cr_d.decisiones.dto.CharacterRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
@@ -23,7 +23,7 @@ class PlayerCharacterRestController (
     }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable("id") id : Long): CharacterResponse? {
+    fun findById(@PathVariable id : Long): CharacterResponse? {
         val character = characterService.getCharacterById(id)
         if(character != null) return character.toResponse()
 
@@ -31,19 +31,19 @@ class PlayerCharacterRestController (
     }
 
     @GetMapping("/by-user/{userId}")
-    fun findByUsername(@PathVariable("userId") userId : Long) : List<CharacterResponse>? {
+    fun findByUsername(@PathVariable userId : Long) : List<CharacterResponse>? {
         return getByUser.execute(userId).map{ it.toResponse() }
     }
 
     @PostMapping("")
-    fun createCharacter(@RequestBody character: PlayerCharacterRequest) {
+    fun createCharacter(@RequestBody character: CharacterRequest) {
         val newCharacter = create.execute(character)
 
         characterService.save(newCharacter)
     }
 
     @DeleteMapping("{id}")
-    fun deleteCharacter(@PathVariable("id") id : Long) {
+    fun deleteCharacter(@PathVariable id : Long) {
         characterService.deleteById(id)
     }
 }
