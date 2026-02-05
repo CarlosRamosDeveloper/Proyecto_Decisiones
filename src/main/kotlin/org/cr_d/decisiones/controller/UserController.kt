@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*
 class UserController (
     private val userService: UserService
 ) {
-    //TODO: En el HTML poner un contador, si el contador es 0, que diga "no hay aún usuarios"
     @GetMapping("")
     fun getUsers(model: Model): String {
         model.addAttribute("title", "Listado de Usuarios")
