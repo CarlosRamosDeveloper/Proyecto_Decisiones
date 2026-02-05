@@ -31,12 +31,12 @@
         </tr>
         </thead>
         <tbody>
-        <!--/* @thymesVar id="character" type="org.cr_d.decisiones.dto.CharacterResponse" */-->
-        <tr th:each="character : ${characters}">
-            <td th:text="${character.id}"></td>
-            <td th:text="${character.user}"></td>
-            <td th:text="${character.name}"></td>
-            <td th:text="${character.location}"></td>
+        <tr th:each="character : ${characters}"
+            th:object="${character}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{user}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{location}"></td>
             <td>
                 <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
                 <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
