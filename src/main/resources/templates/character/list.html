@@ -12,7 +12,7 @@
         <p th:if="${users==0}" class="alert alert-info">
             No se pueden crear personajes si no hay usuarios registrados.
         </p>
-        <a  th:if="${users>0}" th:href="@{/}" class="btn btn-success mb-3">Crear</a>
+        <a  th:if="${users>0}" th:href="@{/characters/new}" class="btn btn-success mb-3">Crear</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
@@ -31,11 +31,12 @@
         </tr>
         </thead>
         <tbody>
+        <!--/* @thymesVar id="character" type="org.cr_d.decisiones.dto.CharacterResponse" */-->
         <tr th:each="character : ${characters}">
             <td th:text="${character.id}"></td>
-            <td th:text="${character.userId.username}"></td>
+            <td th:text="${character.user}"></td>
             <td th:text="${character.name}"></td>
-            <td th:text="${character.lastLocationId.name}"></td>
+            <td th:text="${character.location}"></td>
             <td>
                 <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
                 <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
