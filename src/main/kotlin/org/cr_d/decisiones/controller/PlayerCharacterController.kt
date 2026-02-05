@@ -54,11 +54,43 @@ class PlayerCharacterController (
     }
 
     @PostMapping("")
-    fun saveUser(@ModelAttribute character : CharacterRequest): String {
+    fun saveCharacter(@ModelAttribute character : CharacterRequest): String {
         val newCharacter = createCharacter.execute(character)
 
         characterService.save(newCharacter)
 
         return "redirect:/characters"
+    }
+
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val character = characterService.getCharacterById(id) ?: return "redirect:/character/error"
+        model.addAttribute("character", character)
+        model.addAttribute("users", usersService.getAllUsers())
+        model.addAttribute("presets", presetService.getAllPresets())
+        model.addAttribute("title", "Actualizar Usuario")
+
+        return "character/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun updateCharacter(@PathVariable id: Long, @ModelAttribute character: CharacterRequest): String {
+        val characterToUpdate = createCharacter.execute(character, id)
+
+        characterService.save(characterToUpdate)
+
+        return "redirect:/characters"
+    }
+
+    @GetMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long): String {
+        characterService.deleteById(id)
+
+        return "redirect:/characters"
+    }
+
+    @GetMapping("/error")
+    fun characterError(): String {
+        return "character/error"
     }
 }
