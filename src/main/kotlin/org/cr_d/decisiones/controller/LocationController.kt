@@ -40,7 +40,7 @@ class LocationController(
     }
 
     @GetMapping("/edit/{id}")
-    fun showEditForm(@PathVariable("id") id: Long, model: Model): String {
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
         val location = locationService.getLocationById(id) ?: return "redirect:/location/error"
         val updatedLocation = LocationRequest(id, location.name, location.description)
         model.addAttribute("location", updatedLocation)
