@@ -9,11 +9,15 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/}" class="btn btn-success mb-3">Crear Preset</a>
+        <a th:href="@{/}" class="btn btn-success mb-3">Crear</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
-    <table class="table table-striped">
+    <p th:if="${characters.isEmpty()}" class="alert alert-info">
+        No hay personajes registrados.
+    </p>
+
+    <table th:if="${!characters.isEmpty()}" class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>

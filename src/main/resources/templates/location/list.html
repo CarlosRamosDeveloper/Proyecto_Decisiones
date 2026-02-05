@@ -13,7 +13,11 @@
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
-    <table class="table table-striped">
+    <p th:if="${locations.isEmpty()}" class="alert alert-info">
+        No hay ubicaciones registradas.
+    </p>
+
+    <table th:if="${!locations.isEmpty()}" class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
