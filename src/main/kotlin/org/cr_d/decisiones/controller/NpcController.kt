@@ -28,7 +28,7 @@ class NpcController (
 
     @GetMapping("/{id}")
     fun getNpcById(@PathVariable id: Long, model: Model): String {
-        val npc = npcService.findById(id).toResponse()
+        val npc = npcService.findById(id)!!.toResponse()
         model.addAttribute("title", "Listado de Usuarios")
         model.addAttribute("npc", npc)
 
@@ -57,7 +57,7 @@ class NpcController (
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val npc = npcService.findById(id)
-        val npcToUpdate = NpcRequest(id, npc.preset.id!!, npc.name, npc.location.id!!, npc.description)
+        val npcToUpdate = NpcRequest(id, npc!!.preset.id!!, npc.name, npc.location.id!!, npc.description)
 
         model.addAttribute("npc", npcToUpdate)
         model.addAttribute("locations", locationService.getAllLocations())

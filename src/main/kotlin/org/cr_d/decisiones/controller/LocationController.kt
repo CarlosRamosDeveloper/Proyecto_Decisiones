@@ -1,25 +1,24 @@
 package org.cr_d.decisiones.controller
 
-import org.cr_d.decisiones.dto.CharacterPresetRequest
 import org.cr_d.decisiones.dto.LocationRequest
-import org.cr_d.decisiones.model.Location
-import org.cr_d.decisiones.model.NonPlayableCharacter
+import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.usecases.CreateLocationUseCase
+import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/locations")
 class LocationController(
     private val locationService: LocationService,
-    private val createLocation: CreateLocationUseCase
+    private val createLocation: CreateLocationUseCase,
+    private val getNpcs: GetAllNpcsByLocationUseCase
 ) {
     @GetMapping("")
     fun getLocations(model: Model): String {
@@ -32,7 +31,7 @@ class LocationController(
     @GetMapping("/{id}")
     fun getPresetById(@PathVariable id: Long, model: Model): String {
         val location = locationService.getLocationById(id) ?: return "redirect:/preset/error"
-        val relatedNpcs = emptyList<NonPlayableCharacter>()
+        val relatedNpcs = getNpcs.execute(location).map { it.toResponse() }
         model.addAttribute("title", "Información de Ubicación")
         model.addAttribute("location", location)
         model.addAttribute("relatedNpcs", relatedNpcs)

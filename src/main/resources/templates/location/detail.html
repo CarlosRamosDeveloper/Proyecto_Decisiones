@@ -24,6 +24,12 @@
                 <p>Esta ubicación no tiene npcs asociados</p>
             </div>
 
+            <ul class="list-group" th:if="${!relatedNpcs.isEmpty()}">
+                <li class="list-group-item" th:each="npc : ${relatedNpcs}">
+                    <span th:text="|${npc.name} (${npc.race} - ${npc.sex})|">Nombre del personaje</span>
+                </li>
+            </ul>
+
         </div>
     </div>
 
