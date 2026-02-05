@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${character.name}">Detalle Ubicación</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 th:text="${character.name}">Detalle de Usuario</h1>
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> <span th:text="${character.id}">1</span></p>
+            <p class="card-text"><strong>Nombre:</strong> <span th:text="${character.name}">Madrid</span></p>
+            <p class="card-text"><strong>Usuario:</strong> <span th:text="${character.user}">Hace calor</span></p>
+            <p class="card-text"><strong>Sexo:</strong> <span th:text="${character.sex}">Hace calor</span></p>
+            <p class="card-text"><strong>Raza:</strong> <span th:text="${character.race}">Hace calor</span></p>
+            <p class="card-text"><strong>Ubicación:</strong> <span th:text="${character.location}">Hace calor</span></p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a th:href="@{/characters/edit/{id}(id=${character.id})}" class="btn btn-warning">Editar</a>
+        <a th:href="@{/characters/delete/{id}(id=${character.id})}"
+           class="btn btn-danger"
+           onclick="return confirm('¿Seguro que quieres borrar este usuario?')">Borrar</a>
+        <a th:href="@{/characters}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+
+</div>
+</body>
+</html>
