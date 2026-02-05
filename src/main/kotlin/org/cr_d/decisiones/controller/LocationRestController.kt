@@ -1,14 +1,18 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.LocationResponse
+import org.cr_d.decisiones.dto.LocationRestResponse
 import org.cr_d.decisiones.mapper.toResponse
+import org.cr_d.decisiones.mapper.toRestResponse
 import org.cr_d.decisiones.service.LocationService
+import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/locations")
 class LocationRestController (
     private val locationService: LocationService,
+    private val getNpcs: GetAllNpcsByLocationUseCase
 ){
     @GetMapping("")
     fun getLocations(): List<LocationResponse>{
@@ -16,11 +20,10 @@ class LocationRestController (
     }
 
     @GetMapping("/{id}")
-    fun getLocationById(@PathVariable id : Long): LocationResponse? {
-        val location = locationService.getLocationById(id)
+    fun getLocationById(@PathVariable id : Long): LocationRestResponse? {
+        val location = locationService.getLocationById(id) ?: return null
+        val npcs = getNpcs.execute(location).map { it.toResponse() }
 
-        if(location != null) return location.toResponse()
-
-        return null
+        return location.toRestResponse(npcs)
     }
 }
