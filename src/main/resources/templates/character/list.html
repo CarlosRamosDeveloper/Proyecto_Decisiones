@@ -38,7 +38,7 @@
             <td th:text="*{name}"></td>
             <td th:text="*{location}"></td>
             <td>
-                <a th:href="@{/}" class="btn btn-info  btn-sm">Detalles</a>
+                <a th:href="@{/characters/{id}(id=${character.id})}" class="btn btn-info  btn-sm">Detalles</a>
                 <a th:href="@{/}" class="btn btn-warning btn-sm">Editar</a>
                 <a th:href="@{/}"
                    class="btn btn-danger btn-sm"
