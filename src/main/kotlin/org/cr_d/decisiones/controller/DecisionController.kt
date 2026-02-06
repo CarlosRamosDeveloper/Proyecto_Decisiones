@@ -57,5 +57,29 @@ class DecisionController (
         return "redirect:/decisions"
     }
 
+    //error
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val decision = decisionService.findById(id)
 
+        model.addAttribute("decision", decision)
+        model.addAttribute("title", "Actualizar Decisión")
+
+        return "decision/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun update(@PathVariable id: Long, @ModelAttribute decision: DecisionRequest): String {
+        val updatedDecision = createDecision.execute(decision, id)
+        decisionService.save(updatedDecision)
+
+        return "redirect:/decisions"
+    }
+
+    @GetMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long): String {
+        decisionService.delete(id)
+
+        return "redirect:/decisions"
+    }
 }
