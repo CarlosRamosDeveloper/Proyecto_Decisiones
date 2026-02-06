@@ -45,6 +45,60 @@ INSERT INTO `character_presets` VALUES (1,'Esbeltos y silenciosos como el viento
 UNLOCK TABLES;
 
 --
+-- Table structure for table `decision_options`
+--
+
+DROP TABLE IF EXISTS `decision_options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `decision_options` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `option_key` varchar(255) NOT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  `decision_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK2hrbuvvjgv3yjr2ij2085nu2r` (`decision_id`,`option_key`),
+  CONSTRAINT `FKs8r1f9ttraqq036ep3odmo1j2` FOREIGN KEY (`decision_id`) REFERENCES `decisions` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `decision_options`
+--
+
+LOCK TABLES `decision_options` WRITE;
+/*!40000 ALTER TABLE `decision_options` DISABLE KEYS */;
+INSERT INTO `decision_options` VALUES (1,'guild_ninja','Siempre me ha gustado el subterfugio y el sigilo',1),(2,'guild_wizard','Siempre he querido estudiar el origen de la magia',1),(3,'guild_mercenary','Siempre he querido ganarme la vida ofreciendo mi fuerza al servicio de los demás',1),(4,'artisan_blacksmith','El herrero provee a la ciudad de herramientas, armas y armaduras, voy con el',2),(5,'artisan_jeweler','Ayudar al joyero puede repercutirse en la mejora económica de la ciudad (y la mía...) ',2),(6,'thief_kid_beat','Darle una paliza al niño le enseñará modales',3),(7,'thief_kid_help','Distraeré a los guardias para hacerle ganar tiempo al niño',3),(8,'thief_kid_justice','Derribo al niño para asegurarme de que no escape de la justicia',3);
+/*!40000 ALTER TABLE `decision_options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `decisions`
+--
+
+DROP TABLE IF EXISTS `decisions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `decisions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `decision_key` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKsr0n3xk05gusu6n3pokhyf5yt` (`decision_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `decisions`
+--
+
+LOCK TABLES `decisions` WRITE;
+/*!40000 ALTER TABLE `decisions` DISABLE KEYS */;
+INSERT INTO `decisions` VALUES (1,'Gremio al que te has unido','joined_guild'),(2,'A que artesano de StoneHold ayudaste','stonehold_helped_artisan'),(3,'Que acción tomaste con el niño que robó la manzana','thief_kid');
+/*!40000 ALTER TABLE `decisions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `locations`
 --
 
@@ -133,6 +187,35 @@ LOCK TABLES `player_characters` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `player_decisions`
+--
+
+DROP TABLE IF EXISTS `player_decisions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `player_decisions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) DEFAULT NULL,
+  `decision_id` bigint NOT NULL,
+  `player_character_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UKammo6nltrxox2x7khgepd0khe` (`player_character_id`,`decision_id`),
+  KEY `FKbeynrhlwr12dtv48bsrhgcd15` (`decision_id`),
+  CONSTRAINT `FK7lug2p2anekj12r9bdx58y8fc` FOREIGN KEY (`player_character_id`) REFERENCES `player_characters` (`id`),
+  CONSTRAINT `FKbeynrhlwr12dtv48bsrhgcd15` FOREIGN KEY (`decision_id`) REFERENCES `decisions` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `player_decisions`
+--
+
+LOCK TABLES `player_decisions` WRITE;
+/*!40000 ALTER TABLE `player_decisions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `player_decisions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -167,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-05 11:01:39
+-- Dump completed on 2026-02-06 21:35:40
