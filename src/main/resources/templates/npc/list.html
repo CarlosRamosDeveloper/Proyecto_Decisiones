@@ -9,7 +9,11 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/npcs/new}" class="btn btn-success mb-3">Crear</a>
+        <p th:if="${locations.size()==0}" class="alert alert-info">
+            No se pueden crear personajes si no hay ubicaciones registradas, recuerde importar la base de datos.
+        </p>
+
+        <a th:if="${locations.size()>0}" th:href="@{/npcs/new}" class="btn btn-success mb-3">Crear</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 

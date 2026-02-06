@@ -16,7 +16,11 @@
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
-    <table class="table table-striped">
+    <p th:if="${decision_options.isEmpty()}" class="alert alert-info">
+        No hay opciones de decisión registradas, recuerde importar la base de datos.
+    </p>
+
+    <table th:if="${!decision_options.isEmpty()}" class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>

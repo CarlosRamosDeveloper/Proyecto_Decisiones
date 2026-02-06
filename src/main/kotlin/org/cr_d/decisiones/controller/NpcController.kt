@@ -21,6 +21,7 @@ class NpcController (
     @GetMapping("")
     fun getNpcList(model: Model): String{
         model.addAttribute("npcs", npcService.findAll())
+        model.addAttribute("locations", locationService.getAllLocations())
         model.addAttribute("title", "Listado de NPCs")
 
         return "npc/list"
