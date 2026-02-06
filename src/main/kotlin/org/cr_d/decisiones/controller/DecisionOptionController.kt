@@ -56,7 +56,7 @@ class DecisionOptionController (
         return "redirect:/decisionOptions"
     }
 
-
+//TODO: Preparar el error, revisar los botones de navegación
     //error
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
