@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Detalle Ubicación</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Detalles de Decisión</h1>
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> <span th:text="${decision.id}">1</span></p>
+            <p class="card-text"><strong>Nombre:</strong> <span th:text="${decision.key}">Madrid</span></p>
+            <p class="card-text"><strong>Descripción:</strong> <span th:text="${decision.description}">Hace calor</span></p>
+
+            <h6 class="mt-4">Opciones asociadas</h6>
+            <div th:if="${options.isEmpty()}">
+                <p>Esta decisión no tiene opciones asociadas</p>
+            </div>
+
+            <ul class="list-group" th:if="${!options.isEmpty()}">
+                <li class="list-group-item" th:each="option : ${options}">
+                    <span th:text="${option.key}">Clave</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a th:href="@{/decisions/edit/{id}(id=${decision.id})}" class="btn btn-warning">Editar</a>
+        <a th:href="@{/decisions/delete/{id}(id=${decision.id})}"
+           class="btn btn-danger"
+           onclick="return confirm('¿Seguro que quieres borrar esta decisión?')">Borrar</a>
+        <a th:href="@{/decisions}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+
+</div>
+</body>
+</html>
