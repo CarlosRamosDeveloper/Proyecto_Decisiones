@@ -10,6 +10,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
@@ -45,6 +46,7 @@ class DecisionController (
         return "decision/form"
     }
 
+    @PostMapping("")
     fun save(@ModelAttribute decision : DecisionRequest): String {
         val decision = createDecision.execute(decision)
 
@@ -52,4 +54,6 @@ class DecisionController (
 
         return "redirect:/decisions"
     }
+
+
 }
