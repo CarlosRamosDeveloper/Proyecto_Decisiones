@@ -22,6 +22,7 @@ class DecisionOptionController (
     @GetMapping(value = [""])
     fun getAll(model: Model): String{
         model.addAttribute("title", "Listado de opciones de decisiones")
+        model.addAttribute("decisions", decisionsService.findAll())
         model.addAttribute("decision_options", decisionOptionService.findAll())
 
         return "decision_option/list"

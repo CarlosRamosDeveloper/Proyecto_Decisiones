@@ -9,7 +9,10 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/decisionOptions/new}" class="btn btn-success mb-3">Crear</a>
+        <p th:if="${decisions.size()==0}" class="alert alert-info">
+            No se pueden crear opciones si no hay decisiones a las que asociarselas.
+        </p>
+        <a  th:if="${decisions.size()>0}" th:href="@{/decisionOptions/new}" class="btn btn-success mb-3">Crear</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 
