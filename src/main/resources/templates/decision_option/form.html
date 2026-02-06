@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Formulario Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <form th:object="${decision_option}" method="post"
+          th:action="${decision_option.id} != null ? @{'/decisionOptions/update/' + ${decision_option.id}} : @{'/decisionOptions'}">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Decisión</label>
+            <select th:field="*{decisionId}" class="form-control" required>
+                <option th:each="decision : ${decisions}"
+                        th:value="${decision.id}"
+                        th:text="${decision.key}"
+                        th:selected="${decision_option.decisionId == decision.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Valor</label>
+            <input type="text" th:field="*{key}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Comentario</label>
+            <input type="text" th:field="*{text}" class="form-control" required>
+        </div>
+
+        <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/decision_options}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
