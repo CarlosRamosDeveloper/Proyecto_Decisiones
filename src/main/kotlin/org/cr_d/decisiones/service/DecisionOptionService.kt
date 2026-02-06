@@ -14,5 +14,5 @@ class DecisionOptionService (
     fun findById(decisionOptionId: Long): DecisionOption? = decisionOptionRepository.findByIdOrNull(decisionOptionId)
     fun findByDecision(decision: Decision): List<DecisionOption> = decisionOptionRepository.findAllByDecision(decision)
     fun save(decisionOption: DecisionOption) = decisionOptionRepository.save(decisionOption)
-    fun deleteById(decisionOptionId: Long) = decisionOptionRepository.deleteById(decisionOptionId)
+    fun delete(decisionOptionId: Long) = decisionOptionRepository.deleteById(decisionOptionId)
 }

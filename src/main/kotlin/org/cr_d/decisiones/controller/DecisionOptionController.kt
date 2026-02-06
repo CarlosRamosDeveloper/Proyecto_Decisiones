@@ -1,8 +1,6 @@
 package org.cr_d.decisiones.controller
 
 import org.cr_d.decisiones.dto.DecisionOptionRequest
-import org.cr_d.decisiones.dto.DecisionRequest
-import org.cr_d.decisiones.repository.DecisionOptionRepository
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.usecases.CreateDecisionOptionUseCase
@@ -31,10 +29,10 @@ class DecisionOptionController (
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long, model: Model): String {
-        val decision = decisionOptionService.findById(id) ?: return "redirect:/decision/error"
+        val option = decisionOptionService.findById(id) ?: return "redirect:/decision/error"
 
         model.addAttribute("title", "Información de la opción de decisión")
-        model.addAttribute("decision_options", decision)
+        model.addAttribute("decision_options", option)
 
         return "decision_option/detail"
     }
@@ -50,12 +48,40 @@ class DecisionOptionController (
     }
 
     @PostMapping("")
-    fun save(@ModelAttribute decision : DecisionOptionRequest): String {
-        val decision = createOption.execute(decision)
+    fun save(@ModelAttribute option : DecisionOptionRequest): String {
+        val newOption = createOption.execute(option)
 
-        decisionOptionService.save(decision)
+        decisionOptionService.save(newOption)
 
         return "redirect:/decisionOptions"
     }
 
+
+    //error
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val option = decisionOptionService.findById(id)
+        val optionToUpdate = DecisionOptionRequest(id, option!!.decision.id, option.key, option.text)
+
+        model.addAttribute("decision_option", optionToUpdate)
+        model.addAttribute("decisions", decisionsService.findAll())
+        model.addAttribute("title", "Actualizar Decisión")
+
+        return "decision_option/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun update(@PathVariable id: Long, @ModelAttribute option: DecisionOptionRequest): String {
+        val updatedOption = createOption.execute(option, id)
+        decisionOptionService.save(updatedOption)
+
+        return "redirect:/decisionOptions"
+    }
+
+    @GetMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long): String {
+        decisionOptionService.delete(id)
+
+        return "redirect:/decisionOptions"
+    }
 }
