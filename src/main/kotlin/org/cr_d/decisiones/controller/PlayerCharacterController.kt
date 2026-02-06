@@ -23,7 +23,6 @@ class PlayerCharacterController (
     private val createCharacter: CreateCharacterUseCase
 
 ){
-    // TODO: No habilitar el botón de crear si no hay usuarios
     @GetMapping("")
     fun getCharacters(model: Model): String{
         model.addAttribute("characters", characterService.getAllCharacters().map { it.toResponse() })
