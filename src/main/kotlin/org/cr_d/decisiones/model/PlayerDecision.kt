@@ -23,5 +23,8 @@ class PlayerDecision(
     @JoinColumn(name = "decision_id", nullable = false)
     val decision: Decision,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "decision_option_id", nullable = false)
+    val decisionOption: DecisionOption,
     val createdAt: LocalDateTime = LocalDateTime.now()
 )
