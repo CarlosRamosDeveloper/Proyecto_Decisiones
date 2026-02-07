@@ -1,6 +1,5 @@
 package org.cr_d.decisiones.controller
 
-import org.cr_d.decisiones.dto.DecisionRequest
 import org.cr_d.decisiones.dto.PlayerDecisionRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.DecisionOptionService
@@ -41,7 +40,6 @@ class PlayerDecisionController (
         } else null
 
         val canCreate = totalCharacters > 0 && totalDecisions > 0 && totalOptions > 0
-
 
         model.addAttribute("title","")
         model.addAttribute("is_button_enabled",canCreate)
