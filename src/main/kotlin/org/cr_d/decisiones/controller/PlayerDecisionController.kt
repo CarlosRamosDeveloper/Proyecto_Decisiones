@@ -41,7 +41,7 @@ class PlayerDecisionController (
 
         val canCreate = totalCharacters > 0 && totalDecisions > 0 && totalOptions > 0
 
-        model.addAttribute("title","")
+        model.addAttribute("title","Lista de decisiones de personaje")
         model.addAttribute("is_button_enabled",canCreate)
         model.addAttribute("error_message",errorMessage)
         model.addAttribute("player_decisions", playerDecisionService.findAll().map{ it.toResponse() })

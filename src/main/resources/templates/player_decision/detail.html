@@ -7,10 +7,9 @@
 </head>
 <body>
 <div class="container mt-5">
-
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 th:text="${title}">Detalle de Usuario</h1>
-        <a th:href="@{/static}" class="btn btn-secondary">Volver al índice</a>
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
     </div>
 
     <div class="card mt-3">
@@ -29,7 +28,7 @@
         <a th:href="@{/playerDecisions/delete/{id}(id=${decision.id})}"
            class="btn btn-danger"
            onclick="return confirm('¿Seguro que quieres borrar este usuario?')">Borrar</a>
-        <a th:href="@{/users}" class="btn btn-secondary">Volver a la lista</a>
+        <a th:href="@{/playerDecisions}" class="btn btn-secondary">Volver a la lista</a>
     </div>
 
 </div>
