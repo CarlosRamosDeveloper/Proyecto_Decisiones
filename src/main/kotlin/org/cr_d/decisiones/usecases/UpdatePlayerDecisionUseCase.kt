@@ -6,8 +6,10 @@ import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.PlayerDecisionService
+import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
+@Service
 class UpdatePlayerDecisionUseCase(
     private val playerDecisionService: PlayerDecisionService,
     private val characterService: PlayerCharacterService,

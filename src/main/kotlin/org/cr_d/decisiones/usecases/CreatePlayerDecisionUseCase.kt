@@ -5,7 +5,9 @@ import org.cr_d.decisiones.model.PlayerDecision
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
+import org.springframework.stereotype.Service
 
+@Service
 class CreatePlayerDecisionUseCase (
     private val characterService: PlayerCharacterService,
     private val decisionService: DecisionService,
