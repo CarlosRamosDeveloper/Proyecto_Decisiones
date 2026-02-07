@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Formulario Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 th:text="${title}"></h1>
+
+    <form th:object="${player_decision}" method="post"
+          th:action="${player_decision.id} != null ? @{'/playerDecisions/update/' + ${player_decision.id}} : @{'/playerDecisions'}">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Personaje</label>
+            <select th:field="*{characterId}" class="form-control" required>
+                <option th:each="character : ${characters}"
+                        th:value="${character.id}"
+                        th:text="${character.name}"
+                        th:selected="${player_decision.characterId == character.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Decisión</label>
+            <select th:field="*{decisionId}" class="form-control" required>
+                <option th:each="decision : ${decisions}"
+                        th:value="${decision.id}"
+                        th:text="${decision.key}"
+                        th:selected="${player_decision.decisionId == decision.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Elección</label>
+            <select th:field="*{optionId}" class="form-control" required>
+                <option th:each="option : ${options}"
+                        th:value="${option.id}"
+                        th:text="${option.key}"
+                        th:selected="${player_decision.optionId == option.id}">
+                </option>
+            </select>
+        </div>
+
+        <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/playerDecisions}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

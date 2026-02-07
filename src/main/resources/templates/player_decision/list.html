@@ -9,7 +9,8 @@
 <div class="container mt-5">
     <h1 th:text="${title}">Título</h1>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a th:href="@{/playerDecisions/new}" class="btn btn-success mb-3">Crear</a>
+        <p th:if="${!is_button_enabled}" th:text="${error_message}" class="alert alert-info"/>
+        <a th:if="${is_button_enabled}" th:href="@{/playerDecisions/new}" class="btn btn-success mb-3">Crear</a>
         <a th:href="@{/}" class="btn btn-secondary mb-3">Volver al índice</a>
     </div>
 

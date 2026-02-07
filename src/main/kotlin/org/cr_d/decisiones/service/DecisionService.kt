@@ -11,6 +11,7 @@ class DecisionService (
 ){
     fun findAll(): List<Decision> = decisionRepository.findAll()
     fun findById(decisionId: Long): Decision? = decisionRepository.findByIdOrNull(decisionId)
-    fun save(decision: Decision) = decisionRepository.save(decision)
+    fun save(decision: Decision): Decision = decisionRepository.save(decision)
     fun delete(id: Long) = decisionRepository.deleteById(id)
+    fun count(): Long = decisionRepository.count()
 }

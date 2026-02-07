@@ -15,4 +15,5 @@ class PlayerCharacterService(
     fun getCharacterById(id : Long) : PlayerCharacter? = characterRepository.findByIdOrNull(id)
     fun save(playerCharacter : PlayerCharacter) : PlayerCharacter = characterRepository.save(playerCharacter)
     fun deleteById(id: Long) = characterRepository.deleteById(id)
+    fun count(): Long = characterRepository.count()
 }

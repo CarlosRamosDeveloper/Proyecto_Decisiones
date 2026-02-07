@@ -13,6 +13,7 @@ class DecisionOptionService (
     fun findAll(): List<DecisionOption> = decisionOptionRepository.findAll()
     fun findById(decisionOptionId: Long): DecisionOption? = decisionOptionRepository.findByIdOrNull(decisionOptionId)
     fun findByDecision(decision: Decision): List<DecisionOption> = decisionOptionRepository.findAllByDecision(decision)
-    fun save(decisionOption: DecisionOption) = decisionOptionRepository.save(decisionOption)
+    fun save(decisionOption: DecisionOption): DecisionOption = decisionOptionRepository.save(decisionOption)
     fun delete(decisionOptionId: Long) = decisionOptionRepository.deleteById(decisionOptionId)
+    fun count(): Long = decisionOptionRepository.count()
 }
