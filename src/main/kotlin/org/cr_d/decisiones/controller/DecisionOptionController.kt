@@ -33,7 +33,7 @@ class DecisionOptionController (
         val option = decisionOptionService.findById(id) ?: return "redirect:/decision/error"
 
         model.addAttribute("title", "Información de la opción de decisión")
-        model.addAttribute("decision_options", option)
+        model.addAttribute("decision_option", option)
 
         return "decision_option/detail"
     }

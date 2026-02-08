@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Detalle Usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 th:text="${title}">Detalle de Usuario</h1>
+        <a th:href="@{/}" class="btn btn-secondary">Volver al índice</a>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <p class="card-text"><strong>ID:</strong> <span th:text="${decision_option.id}">1</span></p>
+            <p class="card-text"><strong>ID de decisión:</strong> <span th:text="${decision_option.decision.id}"/></p>
+            <p class="card-text"><strong>Clave:</strong> <span th:text="${decision_option.decision.key}"/></p>
+            <p class="card-text"><strong>Valor:</strong> <span th:text="${decision_option.key}"/></p>
+            <p class="card-text"><strong>Frase:</strong> <span th:text="${decision_option.text}"/></p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a th:href="@{/playerDecisions/edit/{id}(id=${decision_option.id})}" class="btn btn-warning">Editar</a>
+        <a th:href="@{/playerDecisions/delete/{id}(id=${decision_option.id})}"
+           class="btn btn-danger"
+           onclick="return confirm('¿Seguro que quieres borrar este usuario?')">Borrar</a>
+        <a th:href="@{/playerDecisions}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+
+</div>
+</body>
+</html>
