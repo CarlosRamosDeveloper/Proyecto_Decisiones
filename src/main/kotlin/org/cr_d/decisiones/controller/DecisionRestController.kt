@@ -32,6 +32,4 @@ class DecisionRestController (
 
         return response.toResponse(options)
     }
-
-
 }
