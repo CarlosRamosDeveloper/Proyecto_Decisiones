@@ -1,9 +1,9 @@
 package org.cr_d.decisiones.mapper
 
 import org.cr_d.decisiones.dto.PlayerDecisionResponse
-import org.cr_d.decisiones.model.PlayerDecision
+import org.cr_d.decisiones.model.CharacterDecision
 
-fun PlayerDecision.toResponse(): PlayerDecisionResponse{
+fun CharacterDecision.toResponse(): PlayerDecisionResponse{
     return PlayerDecisionResponse(
         id = this.id!!,
         characterName = this.playerCharacter.name,

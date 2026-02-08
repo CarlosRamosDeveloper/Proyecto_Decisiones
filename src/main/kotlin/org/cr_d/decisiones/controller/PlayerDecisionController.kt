@@ -5,9 +5,9 @@ import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
-import org.cr_d.decisiones.service.PlayerDecisionService
+import org.cr_d.decisiones.service.CharacterDecisionService
 import org.cr_d.decisiones.usecases.CreatePlayerDecisionUseCase
-import org.cr_d.decisiones.usecases.UpdatePlayerDecisionUseCase
+import org.cr_d.decisiones.usecases.UpdateCharacterDecisionUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.*
 @Controller
 @RequestMapping("/playerDecisions")
 class PlayerDecisionController (
-    private val playerDecisionService: PlayerDecisionService,
+    private val characterDecisionService: CharacterDecisionService,
     private val create: CreatePlayerDecisionUseCase,
-    private val update: UpdatePlayerDecisionUseCase,
+    private val update: UpdateCharacterDecisionUseCase,
     private val characterService: PlayerCharacterService,
     private val decisionService: DecisionService,
     private val decisionOptionService: DecisionOptionService
@@ -44,14 +44,14 @@ class PlayerDecisionController (
         model.addAttribute("title","Lista de decisiones de personaje")
         model.addAttribute("is_button_enabled",canCreate)
         model.addAttribute("error_message",errorMessage)
-        model.addAttribute("player_decisions", playerDecisionService.findAll().map{ it.toResponse() })
+        model.addAttribute("player_decisions", characterDecisionService.findAll().map{ it.toResponse() })
 
         return "player_decision/list"
     }
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long, model: Model): String {
-        val playerDecision = playerDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
+        val playerDecision = characterDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
 
         model.addAttribute("title", "Información de la decisión")
         model.addAttribute("decision", playerDecision.toResponse())
@@ -75,14 +75,14 @@ class PlayerDecisionController (
     fun save(@ModelAttribute decision : PlayerDecisionRequest): String {
         val decision = create.execute(decision)
 
-        playerDecisionService.save(decision)
+        characterDecisionService.save(decision)
 
         return "redirect:/playerDecisions"
     }
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val playerDecision = playerDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
+        val playerDecision = characterDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
         val playerDecisionToUpdate = PlayerDecisionRequest(
             id = id,
             characterId = playerDecision!!.playerCharacter.id!!,
@@ -102,14 +102,14 @@ class PlayerDecisionController (
     @PostMapping("/update/{id}")
     fun update(@PathVariable id: Long, @ModelAttribute decision: PlayerDecisionRequest): String {
         val updatedDecision = update.execute(decision, id)
-        playerDecisionService.save(updatedDecision)
+        characterDecisionService.save(updatedDecision)
 
         return "redirect:/playerDecisions"
     }
 
     @GetMapping("/delete/{id}")
     fun delete(@PathVariable id: Long): String {
-        playerDecisionService.delete(id)
+        characterDecisionService.delete(id)
 
         return "redirect:/playerDecisions"
     }

@@ -11,7 +11,7 @@ import java.time.LocalDateTime
             )
         ]
 )
-class PlayerDecision(
+class CharacterDecision(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,

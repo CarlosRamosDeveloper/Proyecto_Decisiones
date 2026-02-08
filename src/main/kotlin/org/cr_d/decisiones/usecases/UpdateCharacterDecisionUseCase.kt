@@ -1,28 +1,28 @@
 package org.cr_d.decisiones.usecases
 
 import org.cr_d.decisiones.dto.PlayerDecisionRequest
-import org.cr_d.decisiones.model.PlayerDecision
+import org.cr_d.decisiones.model.CharacterDecision
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
-import org.cr_d.decisiones.service.PlayerDecisionService
+import org.cr_d.decisiones.service.CharacterDecisionService
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service
-class UpdatePlayerDecisionUseCase(
-    private val playerDecisionService: PlayerDecisionService,
+class UpdateCharacterDecisionUseCase(
+    private val characterDecisionService: CharacterDecisionService,
     private val characterService: PlayerCharacterService,
     private val decisionService: DecisionService,
     private val optionService: DecisionOptionService
 ) {
-    fun execute(playerDecision: PlayerDecisionRequest, id: Long): PlayerDecision {
-        val exists = playerDecisionService.findById(id)
+    fun execute(playerDecision: PlayerDecisionRequest, id: Long): CharacterDecision {
+        val exists = characterDecisionService.findById(id)
         val character = characterService.getCharacterById(playerDecision.characterId)
         val decision = decisionService.findById(playerDecision.decisionId)
         val option = optionService.findById(playerDecision.optionId)
 
-        return PlayerDecision(
+        return CharacterDecision(
             id = id,
             playerCharacter = character!!,
             decision = decision!!,
