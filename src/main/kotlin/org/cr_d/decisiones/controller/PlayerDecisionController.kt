@@ -51,10 +51,10 @@ class PlayerDecisionController (
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long, model: Model): String {
-        val playerDecision = playerDecisionService.findById(id)?.toResponse()
+        val playerDecision = playerDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
 
         model.addAttribute("title", "Información de la decisión")
-        model.addAttribute("decision", playerDecision)
+        model.addAttribute("decision", playerDecision.toResponse())
 
         return "player_decision/detail"
     }
@@ -82,7 +82,7 @@ class PlayerDecisionController (
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val playerDecision = playerDecisionService.findById(id)
+        val playerDecision = playerDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
         val playerDecisionToUpdate = PlayerDecisionRequest(
             id = id,
             characterId = playerDecision!!.playerCharacter.id!!,
@@ -112,6 +112,11 @@ class PlayerDecisionController (
         playerDecisionService.delete(id)
 
         return "redirect:/playerDecisions"
+    }
+
+    @GetMapping("/error")
+    fun userError(): String {
+        return "player_decision/error"
     }
 
 }
