@@ -1,5 +1,9 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.CharacterRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterPresetService
@@ -7,13 +11,6 @@ import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.UserService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
 import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/characters")
@@ -48,6 +45,7 @@ class PlayerCharacterController (
     @GetMapping("/new")
     fun createCharacter(model: Model): String {
         val emptyCharacter = CharacterRequest(null, 0, 0, "")
+
         model.addAttribute("character", emptyCharacter)
         model.addAttribute("users", usersService.getAllUsers())
         model.addAttribute("presets", presetService.getAllPresets())
@@ -68,6 +66,7 @@ class PlayerCharacterController (
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val character = characterService.getCharacterById(id) ?: return "redirect:/characters/error"
+
         model.addAttribute("character", character)
         model.addAttribute("users", usersService.getAllUsers())
         model.addAttribute("presets", presetService.getAllPresets())

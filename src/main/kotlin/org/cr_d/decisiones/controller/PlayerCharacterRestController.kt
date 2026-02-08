@@ -1,5 +1,7 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.CharacterResponse
 import org.cr_d.decisiones.dto.CharacterRequest
 import org.cr_d.decisiones.mapper.toResponse
@@ -7,7 +9,6 @@ import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
 import org.cr_d.decisiones.usecases.GetCharacterByUsernameUseCase
 import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
-import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/characters")

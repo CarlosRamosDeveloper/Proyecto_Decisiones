@@ -1,12 +1,13 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.UserRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/users")
@@ -77,10 +78,5 @@ class UserController (
     @GetMapping("/error")
     fun userError(): String {
         return "user/error"
-    }
-
-    @GetMapping("/boom")
-    fun boom(): String {
-        throw RuntimeException("Error de prueba")
     }
 }

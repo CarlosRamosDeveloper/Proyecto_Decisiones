@@ -1,16 +1,13 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.DecisionRequest
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.usecases.CreateDecisionUseCase
 import org.cr_d.decisiones.usecases.GetAllOptionsByDecisionUseCase
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping(value = ["/decisions"])
@@ -42,6 +39,7 @@ class DecisionController (
     @GetMapping("/new")
     fun create(model: Model): String {
         val emptyDecision = DecisionRequest(null, "")
+
         model.addAttribute("decision", emptyDecision)
         model.addAttribute("title", "Crear Decisión")
 
@@ -57,7 +55,6 @@ class DecisionController (
         return "redirect:/decisions"
     }
 
-    //error
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val decision = decisionService.findById(id) ?: return "redirect:/decisions/error"
@@ -71,6 +68,7 @@ class DecisionController (
     @PostMapping("/update/{id}")
     fun update(@PathVariable id: Long, @ModelAttribute decision: DecisionRequest): String {
         val updatedDecision = createDecision.execute(decision, id)
+
         decisionService.save(updatedDecision)
 
         return "redirect:/decisions"

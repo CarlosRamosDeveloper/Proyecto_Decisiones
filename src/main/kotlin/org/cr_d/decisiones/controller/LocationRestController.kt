@@ -1,12 +1,13 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.LocationResponse
 import org.cr_d.decisiones.dto.LocationRestResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.mapper.toRestResponse
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
-import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/locations")

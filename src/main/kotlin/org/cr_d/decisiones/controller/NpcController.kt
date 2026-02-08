@@ -1,14 +1,15 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.NpcRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.service.NpcService
 import org.cr_d.decisiones.usecases.CreateNpcUseCase
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/npcs")
@@ -40,6 +41,7 @@ class NpcController (
     @GetMapping("/new")
     fun createNpc(model: Model): String {
         val emptyNpc = NpcRequest(null, 0, "", 0, "")
+
         model.addAttribute("npc", emptyNpc)
         model.addAttribute("locations", locationService.getAllLocations())
         model.addAttribute("presets", presetService.getAllPresets())
@@ -51,6 +53,7 @@ class NpcController (
     @PostMapping("")
     fun saveNpc(@ModelAttribute npc : NpcRequest): String {
         val newNpc = createNpc.execute(npc)
+
         npcService.save(newNpc)
 
         return "redirect:/npcs"

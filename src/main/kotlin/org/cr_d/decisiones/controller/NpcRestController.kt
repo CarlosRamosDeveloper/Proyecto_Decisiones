@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.NpcResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.NpcService
-import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/npcs")

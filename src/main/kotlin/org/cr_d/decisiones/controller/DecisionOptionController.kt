@@ -1,16 +1,13 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.DecisionOptionRequest
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.usecases.CreateDecisionOptionUseCase
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping(value = ["/decisionOptions"])
@@ -58,8 +55,6 @@ class DecisionOptionController (
         return "redirect:/decisionOptions"
     }
 
-//TODO: Preparar el error, revisar los botones de navegación
-    //error
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val option = decisionOptionService.findById(id) ?: return "redirect:/decisionOptions/error"

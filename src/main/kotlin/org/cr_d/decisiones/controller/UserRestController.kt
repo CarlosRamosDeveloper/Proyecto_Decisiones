@@ -19,20 +19,16 @@ class UserRestController (
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id : Long) : UserResponse?{
-        val user = userService.getUserById(id)
+        val user = userService.getUserById(id) ?: return null
 
-        if (user != null) return user.toResponse()
-
-        return null
+        return user.toResponse()
     }
 
     @GetMapping("/email")
     fun getUserByEmail(@RequestParam("email") email: String) : UserResponse?{
-        val user = userService.getUserByEmail(email)
+        val user = userService.getUserByEmail(email) ?: return null
 
-        if (user != null) return user.toResponse()
-
-        return null
+        return user.toResponse()
     }
 
     @PostMapping("")
@@ -43,6 +39,7 @@ class UserRestController (
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id : Long){
         val user = userService.getUserById(id)
+
         if (user != null){
             userService.delete(user)
         }
