@@ -274,13 +274,15 @@ TODO
 > La api expone en el endpoint /api/characters la información para los clientes relacionada con los personajes
 > del juego. Estos son métodos http y los endpoints expuestos por la API
 
-| HTTP method | Endpoint                                | Resultado                                  |
-|-------------|-----------------------------------------|--------------------------------------------|
-| Post        | localhost:8080/api/characters           | Permite crear un nuevo personaje           |
-| Get         | localhost:8080/api/characters           | Obtiene todos los personajes               |
-| Get         | localhost:8080/api/characters/1         | Obtiene la información del personaje 1     |
-| Get         | localhost:8080/api/characters/by-user/3 | Obtiene todos los personajes del usuario 3 |
-| Delete      | localhost:8080/api/characters/1         | Elimina al personaje 1                     |
+| HTTP method | Endpoint                                 | Resultado                                    |
+|-------------|------------------------------------------|----------------------------------------------|
+| Post        | localhost:8080/api/characters            | Permite crear un nuevo personaje             |
+| Get         | localhost:8080/api/characters            | Obtiene todos los personajes                 |
+| Get         | localhost:8080/api/characters/1          | Obtiene la información del personaje 1       |
+| Get         | localhost:8080/api/characters/by-user/3  | Obtiene todos los personajes del usuario 3   |
+| Patch       | localhost:8080/api/characters/1          | Permite cambiar el nombre del personaje 1    |
+| Patch       | localhost:8080/api/characters/1/location | Permite cambiar la ubicación del personaje 1 |
+| Delete      | localhost:8080/api/characters/1          | Elimina al personaje 1                       |
 
 >Ejemplo del body de crear un personaje
 > ``` Json 
@@ -288,6 +290,20 @@ TODO
 >   "userId": Long,
 >   "presetId": Long,
 >   "name": String,
+> }
+> ```
+
+>Ejemplo del body de cambiar el nombre de un personaje
+> ``` Json 
+> {
+>   "name": String,
+> }
+> ```
+
+>Ejemplo del body de cambiar la ubicación de un personaje
+> ``` Json 
+> {
+>   "locationId": Long,
 > }
 > ```
 
