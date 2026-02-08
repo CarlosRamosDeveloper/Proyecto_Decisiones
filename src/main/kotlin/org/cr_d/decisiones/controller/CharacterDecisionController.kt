@@ -1,5 +1,9 @@
 package org.cr_d.decisiones.controller
 
+import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
+import org.springframework.web.bind.annotation.*
+
 import org.cr_d.decisiones.dto.CharacterDecisionRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.DecisionOptionService
@@ -8,12 +12,7 @@ import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.CharacterDecisionService
 import org.cr_d.decisiones.usecases.CreateCharacterDecisionUseCase
 import org.cr_d.decisiones.usecases.UpdateCharacterDecisionUseCase
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.*
 
-
-// TODO: Mostrar errores en asignación
 @Controller
 @RequestMapping("/playerDecisions")
 class CharacterDecisionController (
@@ -85,7 +84,7 @@ class CharacterDecisionController (
         val playerDecision = characterDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
         val playerDecisionToUpdate = CharacterDecisionRequest(
             id = id,
-            characterId = playerDecision!!.playerCharacter.id!!,
+            characterId = playerDecision.playerCharacter.id!!,
             decisionId = playerDecision.decision.id!!,
             optionId = playerDecision.decisionOption.id!!,
         )
@@ -102,6 +101,7 @@ class CharacterDecisionController (
     @PostMapping("/update/{id}")
     fun update(@PathVariable id: Long, @ModelAttribute decision: CharacterDecisionRequest): String {
         val updatedDecision = update.execute(decision, id)
+
         characterDecisionService.save(updatedDecision)
 
         return "redirect:/playerDecisions"
@@ -118,5 +118,4 @@ class CharacterDecisionController (
     fun userError(): String {
         return "player_decision/error"
     }
-
 }
