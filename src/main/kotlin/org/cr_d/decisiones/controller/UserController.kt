@@ -23,7 +23,8 @@ class UserController (
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id: Long, model: Model): String {
-        val user = userService.getUserById(id) ?: return "redirect:/user/error"
+        val user = userService.getUserById(id) ?: return "redirect:/users/error"
+
         model.addAttribute("title", "Listado de Usuarios")
         model.addAttribute("user", user.toResponse())
 
@@ -33,6 +34,7 @@ class UserController (
     @GetMapping("/new")
     fun createUser(model: Model): String {
         val emptyUser = UserRequest()
+
         model.addAttribute("user", emptyUser)
         model.addAttribute("title", "Crear Usuario")
 
@@ -48,22 +50,27 @@ class UserController (
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val user = userService.getUserById(id) ?: return "redirect:/user/error"
+        val user = userService.getUserById(id) ?: return "redirect:/users/error"
+
         model.addAttribute("user", user)
         model.addAttribute("title", "Actualizar Usuario")
+
         return "user/form"
     }
 
     @PostMapping("/update/{id}")
     fun updateUser(@PathVariable id: Long, @ModelAttribute user: User): String {
         userService.save(user)
+
         return "redirect:/users"
     }
 
     @GetMapping("/delete/{id}")
     fun deleteUser(@PathVariable id: Long): String {
-        val user = userService.getUserById(id) ?: return "redirect:/user/error"
+        val user = userService.getUserById(id) ?: return "redirect:/users/error"
+
         userService.delete(user)
+
         return "redirect:/users"
     }
 
