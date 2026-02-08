@@ -30,7 +30,7 @@ class LocationController(
 
     @GetMapping("/{id}")
     fun getPresetById(@PathVariable id: Long, model: Model): String {
-        val location = locationService.getLocationById(id) ?: return "redirect:/preset/error"
+        val location = locationService.getLocationById(id) ?: return "redirect:/locations/error"
         val relatedNpcs = getNpcs.execute(location).map { it.toResponse() }
         model.addAttribute("title", "Información de Ubicación")
         model.addAttribute("location", location)
@@ -41,7 +41,7 @@ class LocationController(
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val location = locationService.getLocationById(id) ?: return "redirect:/location/error"
+        val location = locationService.getLocationById(id) ?: return "redirect:/locations/error"
         val updatedLocation = LocationRequest(id, location.name, location.description)
         model.addAttribute("location", updatedLocation)
         model.addAttribute("title", "Actualizar ubicación")
