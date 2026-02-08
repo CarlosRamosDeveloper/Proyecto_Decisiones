@@ -160,10 +160,10 @@ TODO
 
 > Este es el listado de todos los endpoints REST del servidor.
 
-### Users
+### User
 
->La API expone en el endpoint /api/users la información para los clientes relacionada con los usuarios, estos son
-> los métodos http y los endpoints con ejemplos.
+>La API expone en el endpoint /api/users la información para los clientes relacionada con los usuarios. 
+> Estos son métodos http y los endpoints expuestos por la API
 
 | HTTP method | Endpoint                                             | Resultado                      |
 |-------------|------------------------------------------------------|--------------------------------|
@@ -200,10 +200,10 @@ TODO
 > }
 > ```
 
-### Locations
+### Location
 
 > La API expone en el endpoint /api/locations la información para los clientes relacionada con 
-> las ubicaciones del juego. Estos son los métodos Http y los endpoints a los que el usuario tiene acceso.
+> las ubicaciones del juego. Estos son métodos http y los endpoints expuestos por la API
 
 | HTTP method | Endpoint                       | Resultado                        |
 |-------------|--------------------------------|----------------------------------|
@@ -229,10 +229,10 @@ TODO
 > }
 > ```
 
-### Presets
+### Preset
 
 >La api expone en el endpoint /api/presets la información para los clientes relacionada con los presets
-> del juego. Estos son los métodos http y los endpoints a los que el usuario tiene acceso.
+> del juego. Estos son métodos http y los endpoints expuestos por la API
 
 | HTTP method | Endpoint                     | Resultado                         |
 |-------------|------------------------------|-----------------------------------|
@@ -250,10 +250,10 @@ TODO
 > }
 > ```
 
-### Characters
+### Character
 
 > La api expone en el endpoint /api/characters la información para los clientes relacionada con los personajes
-> del juego. Estos son métodos http y sus endpoints a los que el usuario tiene acceso
+> del juego. Estos son métodos http y los endpoints expuestos por la API
 
 | HTTP method | Endpoint                                | Resultado                                  |
 |-------------|-----------------------------------------|--------------------------------------------|
@@ -284,10 +284,10 @@ TODO
 > }
 > ```
 
-### Npcs
+### Npc
 
 > La api expone en el endpoint /api/npcs la información para los clientes relacionada con los 
-> personajes no jugables del juego. Estos son métodos http y sus endpoints a los que el usuario tiene acceso
+> personajes no jugables del juego. Estos son métodos http y los endpoints expuestos por la API
 
 | HTTP method | Endpoint                  | Resultado                        |
 |-------------|---------------------------|----------------------------------|
@@ -304,4 +304,86 @@ TODO
 >   "description": String,
 >   "location": String
 > }
+> ```
+
+### Decision
+
+> La api expone en el endpoint /api/decisions la información para los clientes relacionada con los
+> las decisiones que pueden tomar los personajes en el juego. Estos son métodos http y los endpoints expuestos por la API
+
+| HTTP method | Endpoint                       | Resultado                               |
+|-------------|--------------------------------|-----------------------------------------|
+| Get         | localhost:8080/api/decisions   | Obtiene todas las decisiones            |
+| Get         | localhost:8080/api/decisions/1 | Obtiene la información de la decisión 1 |
+
+>Ejemplo de respuesta de decisión
+> ``` json
+> {
+>   "id": Long,
+>   "key": String,
+>   "description": String,
+>   "options": [
+>     {
+>       "id": Long,
+>       "decisionId": Long,
+>       "decision": String,
+>       "value": String,
+>       "displayText": String,
+>       "text": String
+>     },
+>   ]
+> }
+> ```
+
+### DecisionOption
+
+> La api expone en el endpoint /api/decisionOptions la información para los clientes relacionada con las
+> respuestas que puede elegir el personaje en el juego. Estos son métodos http y los endpoints expuestos por la API
+
+| HTTP method | Endpoint                             | Resultado                                |
+|-------------|--------------------------------------|------------------------------------------|
+| Get         | localhost:8080/api/decisionOptions   | Obtiene todas las opciones de decisiones |
+| Get         | localhost:8080/api/decisionOptions/1 | Obtiene la información de la opción 1    |
+
+>Ejemplo de respuesta de una opción
+> ``` json
+> {
+>   "id": Long,
+>   "decisionId": Long,
+>   "decision": String,
+>   "value": String,
+>   "displayText": String,
+>   "text": String
+> },
+> ```
+
+### CharacterDecision
+
+> La api expone en el endpoint /api/playerDecisions la información para los clientes relacionada con los
+> las decisiones que ha tomado un personaje en el juego. Estos son métodos http y los endpoints expuestos por la API
+
+| HTTP method | Endpoint                             | Resultado                                                     |
+|-------------|--------------------------------------|---------------------------------------------------------------|
+| Post        | localhost:8080/api/playerDecisions   | Obtiene la información de la opción 1                         |
+| Get         | localhost:8080/api/playerDecisions   | Permite asignar una nueva decisión y su elección al personaje |
+| Get         | localhost:8080/api/playerDecisions/1 | Obtiene la información de la opción 1                         |
+
+>Ejemplo del body de asignar una decisión y una opción a un personaje
+> ``` Json 
+> {
+>   "characterId": Long,
+>   "decisionId": Long,
+>   "optionId": Long
+> }
+> ```
+
+>Ejemplo de respuesta de una decisión de personaje
+> ``` json
+> {
+>   "id": Long,
+>   "characterName": String,
+>   "decision": String,
+>   "option": String,
+>   "createdAt": LocalDate
+> },
 > ```
