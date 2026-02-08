@@ -29,9 +29,10 @@ class NpcController (
 
     @GetMapping("/{id}")
     fun getNpcById(@PathVariable id: Long, model: Model): String {
-        val npc = npcService.findById(id)!!.toResponse()
+        val npc = npcService.findById(id) ?: return "redirect:/npcs/error"
+
         model.addAttribute("title", "Listado de Usuarios")
-        model.addAttribute("npc", npc)
+        model.addAttribute("npc", npc.toResponse())
 
         return "npc/detail"
     }
@@ -57,8 +58,8 @@ class NpcController (
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val npc = npcService.findById(id)
-        val npcToUpdate = NpcRequest(id, npc!!.preset.id!!, npc.name, npc.location.id!!, npc.description)
+        val npc = npcService.findById(id) ?: return "redirect:/npcs/error"
+        val npcToUpdate = NpcRequest(id, npc.preset.id!!, npc.name, npc.location.id!!, npc.description)
 
         model.addAttribute("npc", npcToUpdate)
         model.addAttribute("locations", locationService.getAllLocations())
@@ -81,5 +82,10 @@ class NpcController (
         npcService.deleteById(id)
 
         return "redirect:/npcs"
+    }
+
+    @GetMapping("/error")
+    fun userError(): String {
+        return "npc/error"
     }
 }

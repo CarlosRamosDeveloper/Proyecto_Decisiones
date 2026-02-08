@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error de usuario</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Error</h4>
+                </div>
+                <div class="card-body text-center">
+                    <p class="fs-5 mb-4">
+                        El personaje no jugable que estás buscando no existe.
+                    </p>
+
+                    <a th:href="@{/}" class="btn btn-primary">
+                        Volver al índice
+                    </a>
+                    <a th:href="@{/npcs}" class="btn btn-primary">
+                        Volver al listado de usuarios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
