@@ -1,11 +1,14 @@
 package org.cr_d.decisiones.controller
 
+import org.cr_d.decisiones.dto.UserRequest
 import org.springframework.web.bind.annotation.*
 
 import org.cr_d.decisiones.dto.UserResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.service.UserService
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/users")
@@ -34,6 +37,19 @@ class UserRestController (
     @PostMapping("")
     fun createUser(@RequestBody user: User){
         userService.save(user)
+    }
+
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody request: UserRequest): UserResponse {
+        val user = userService.getUserById(id)
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")
+
+        val updatedCharacter = user.copy(
+            email = request.email ,
+            username = request.username,
+        )
+
+        return userService.save(updatedCharacter).toResponse()
     }
 
     @DeleteMapping("/{id}")
