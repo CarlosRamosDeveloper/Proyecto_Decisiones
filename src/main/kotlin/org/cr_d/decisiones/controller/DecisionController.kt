@@ -29,7 +29,7 @@ class DecisionController (
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long, model: Model): String {
-        val decision = decisionService.findById(id) ?: return "redirect:/decision/error"
+        val decision = decisionService.findById(id) ?: return "redirect:/decisions/error"
         val decisionOptions = getAllOptionsByDecision.execute(decision)
 
         model.addAttribute("title", "Información de la decisión")
@@ -60,7 +60,7 @@ class DecisionController (
     //error
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val decision = decisionService.findById(id)
+        val decision = decisionService.findById(id) ?: return "redirect:/decisions/error"
 
         model.addAttribute("decision", decision)
         model.addAttribute("title", "Actualizar Decisión")
@@ -81,5 +81,10 @@ class DecisionController (
         decisionService.delete(id)
 
         return "redirect:/decisions"
+    }
+
+    @GetMapping("/error")
+    fun userError(): String {
+        return "decision/error"
     }
 }
