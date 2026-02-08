@@ -80,4 +80,38 @@ class PlayerDecisionController (
         return "redirect:/playerDecisions"
     }
 
+    @GetMapping("/edit/{id}")
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val playerDecision = playerDecisionService.findById(id)
+        val playerDecisionToUpdate = PlayerDecisionRequest(
+            id = id,
+            characterId = playerDecision!!.playerCharacter.id!!,
+            decisionId = playerDecision.decision.id!!,
+            optionId = playerDecision.decisionOption.id!!,
+        )
+
+        model.addAttribute("player_decision", playerDecisionToUpdate)
+        model.addAttribute("characters", characterService.getAllCharacters())
+        model.addAttribute("decisions", decisionService.findAll())
+        model.addAttribute("options", decisionOptionService.findAll())
+        model.addAttribute("title", "Modificar decisión de personaje")
+
+        return "player_decision/form"
+    }
+
+    @PostMapping("/update/{id}")
+    fun update(@PathVariable id: Long, @ModelAttribute decision: PlayerDecisionRequest): String {
+        val updatedDecision = update.execute(decision, id)
+        playerDecisionService.save(updatedDecision)
+
+        return "redirect:/playerDecisions"
+    }
+
+    @GetMapping("/delete/{id}")
+    fun delete(@PathVariable id: Long): String {
+        playerDecisionService.delete(id)
+
+        return "redirect:/playerDecisions"
+    }
+
 }
