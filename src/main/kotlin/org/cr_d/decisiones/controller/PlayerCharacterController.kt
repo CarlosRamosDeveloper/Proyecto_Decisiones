@@ -6,7 +6,7 @@ import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.UserService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
-import org.cr_d.decisiones.usecases.GetPlayerDecisionsByCharacterIdUseCase
+import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -22,7 +22,7 @@ class PlayerCharacterController (
     private val usersService: UserService,
     private val presetService: CharacterPresetService,
     private val createCharacter: CreateCharacterUseCase,
-    private val getDecisions: GetPlayerDecisionsByCharacterIdUseCase
+    private val getDecisions: GetCharacterDecisionsByCharacterIdUseCase
 
 ){
     @GetMapping("")

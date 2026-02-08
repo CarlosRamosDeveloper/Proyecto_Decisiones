@@ -7,5 +7,5 @@ data class CharacterResponse (
     val location: String,
     val race: String,
     val sex: String,
-    val decisions: List<PlayerDecisionResponse> = emptyList()
+    val decisions: List<CharacterDecisionResponse> = emptyList()
 )

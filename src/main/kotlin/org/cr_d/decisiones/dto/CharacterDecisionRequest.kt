@@ -1,6 +1,6 @@
 package org.cr_d.decisiones.dto
 
-data class PlayerDecisionRequest (
+data class CharacterDecisionRequest (
     val id: Long? = null,
     val characterId: Long = 0,
     val decisionId: Long = 0,

@@ -5,7 +5,7 @@ import org.cr_d.decisiones.service.CharacterDecisionService
 import org.springframework.stereotype.Service
 
 @Service
-class GetPlayerDecisionsByCharacterIdUseCase (
+class GetCharacterDecisionsByCharacterIdUseCase (
     private val characterDecisionService: CharacterDecisionService
 ){
     fun execute(characterId: Long): List<CharacterDecision>{

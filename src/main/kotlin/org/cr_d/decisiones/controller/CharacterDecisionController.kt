@@ -1,6 +1,6 @@
 package org.cr_d.decisiones.controller
 
-import org.cr_d.decisiones.dto.PlayerDecisionRequest
+import org.cr_d.decisiones.dto.CharacterDecisionRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 // TODO: Mostrar errores en asignación
 @Controller
 @RequestMapping("/playerDecisions")
-class PlayerDecisionController (
+class CharacterDecisionController (
     private val characterDecisionService: CharacterDecisionService,
     private val create: CreatePlayerDecisionUseCase,
     private val update: UpdateCharacterDecisionUseCase,
@@ -61,7 +61,7 @@ class PlayerDecisionController (
 
     @GetMapping("/new")
     fun create(model: Model): String {
-        val emptyPlayerDecision = PlayerDecisionRequest(null, 0, 0,0)
+        val emptyPlayerDecision = CharacterDecisionRequest(null, 0, 0,0)
         model.addAttribute("player_decision", emptyPlayerDecision)
         model.addAttribute("characters", characterService.getAllCharacters())
         model.addAttribute("decisions", decisionService.findAll())
@@ -72,7 +72,7 @@ class PlayerDecisionController (
     }
 
     @PostMapping("")
-    fun save(@ModelAttribute decision : PlayerDecisionRequest): String {
+    fun save(@ModelAttribute decision : CharacterDecisionRequest): String {
         val decision = create.execute(decision)
 
         characterDecisionService.save(decision)
@@ -83,7 +83,7 @@ class PlayerDecisionController (
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val playerDecision = characterDecisionService.findById(id) ?: return "redirect:/playerDecisions/error"
-        val playerDecisionToUpdate = PlayerDecisionRequest(
+        val playerDecisionToUpdate = CharacterDecisionRequest(
             id = id,
             characterId = playerDecision!!.playerCharacter.id!!,
             decisionId = playerDecision.decision.id!!,
@@ -100,7 +100,7 @@ class PlayerDecisionController (
     }
 
     @PostMapping("/update/{id}")
-    fun update(@PathVariable id: Long, @ModelAttribute decision: PlayerDecisionRequest): String {
+    fun update(@PathVariable id: Long, @ModelAttribute decision: CharacterDecisionRequest): String {
         val updatedDecision = update.execute(decision, id)
         characterDecisionService.save(updatedDecision)
 
