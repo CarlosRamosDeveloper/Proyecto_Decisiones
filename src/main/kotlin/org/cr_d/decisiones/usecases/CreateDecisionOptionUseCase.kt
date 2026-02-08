@@ -16,6 +16,7 @@ class CreateDecisionOptionUseCase (
             id = id,
             decision = decision!!,
             key = decisionOption.key,
+            displayText = decisionOption.displayText!!,
             text = decisionOption.text,
         )
     }

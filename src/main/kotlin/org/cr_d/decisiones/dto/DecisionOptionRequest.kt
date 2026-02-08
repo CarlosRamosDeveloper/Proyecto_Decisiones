@@ -4,5 +4,6 @@ data class DecisionOptionRequest(
     val id: Long? = null,
     val decisionId: Long? = null,
     val key: String,
+    val displayText: String? =null,
     val text: String? = null,
 )

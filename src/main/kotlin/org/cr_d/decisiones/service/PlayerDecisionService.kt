@@ -11,6 +11,7 @@ class PlayerDecisionService (
 ){
     fun findAll(): List<PlayerDecision> = playerDecisionRepository.findAll()
     fun findById(playerDecisionId: Long): PlayerDecision? = playerDecisionRepository.findByIdOrNull(playerDecisionId)
+    fun findByCharacter(characterId: Long): List<PlayerDecision> = playerDecisionRepository.findByPlayerCharacterId(characterId)
     fun save(playerDecision: PlayerDecision): PlayerDecision = playerDecisionRepository.save(playerDecision)
     fun delete(playerDecisionId: Long) = playerDecisionRepository.deleteById(playerDecisionId)
 

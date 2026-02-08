@@ -6,6 +6,7 @@ import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.UserService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
+import org.cr_d.decisiones.usecases.GetPlayerDecisionsByCharacterIdUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -20,7 +21,8 @@ class PlayerCharacterController (
     private val characterService: PlayerCharacterService,
     private val usersService: UserService,
     private val presetService: CharacterPresetService,
-    private val createCharacter: CreateCharacterUseCase
+    private val createCharacter: CreateCharacterUseCase,
+    private val getDecisions: GetPlayerDecisionsByCharacterIdUseCase
 
 ){
     @GetMapping("")
@@ -35,8 +37,10 @@ class PlayerCharacterController (
     @GetMapping("/{id}")
     fun getCharacterById(@PathVariable id: Long, model: Model): String {
         val character = characterService.getCharacterById(id) ?: return "redirect:/character/error"
+        val decisions = getDecisions.execute(character.id!!)
+
         model.addAttribute("title", "Listado de personajes")
-        model.addAttribute("character", character.toResponse())
+        model.addAttribute("character", character.toResponse(decisions))
 
         return "character/detail"
     }

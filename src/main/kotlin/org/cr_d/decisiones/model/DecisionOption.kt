@@ -21,5 +21,6 @@ data class DecisionOption(
     @Column(name = "option_key", nullable = false)
     val key: String,
 
+    val displayText: String,
     val text: String? = null
 )

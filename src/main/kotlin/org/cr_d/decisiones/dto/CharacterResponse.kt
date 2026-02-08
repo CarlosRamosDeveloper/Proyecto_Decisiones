@@ -6,5 +6,8 @@ data class CharacterResponse (
     val name: String,
     val location: String,
     val race: String,
-    val sex: String
+    val sex: String,
+    val decisions: List<PlayerDecisionResponse> = emptyList()
 )
+
+// TODO: Agregar la lista de PlayerDecisionResponse
