@@ -6,6 +6,7 @@ import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.usecases.CreateCharacterUseCase
 import org.cr_d.decisiones.usecases.GetCharacterByUsernameUseCase
+import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.*
 class PlayerCharacterRestController (
     private val characterService: PlayerCharacterService,
     private val create: CreateCharacterUseCase,
-    private val getByUser: GetCharacterByUsernameUseCase
+    private val getByUser: GetCharacterByUsernameUseCase,
+    private val getDecisions: GetCharacterDecisionsByCharacterIdUseCase
 ) {
     @GetMapping("")
     fun findAll(): List<CharacterResponse> {
@@ -24,10 +26,10 @@ class PlayerCharacterRestController (
 
     @GetMapping("/{id}")
     fun findById(@PathVariable id : Long): CharacterResponse? {
-        val character = characterService.getCharacterById(id)
-        if(character != null) return character.toResponse()
+        val character = characterService.getCharacterById(id) ?: return null
+        val decisions = getDecisions.execute(character.id!!)
 
-        return null
+        return character.toResponse(decisions)
     }
 
     @GetMapping("/by-user/{userId}")
