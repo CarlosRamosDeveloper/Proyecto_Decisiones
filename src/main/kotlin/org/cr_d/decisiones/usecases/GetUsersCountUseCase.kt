@@ -1,7 +1,8 @@
 package org.cr_d.decisiones.usecases
 
-import org.cr_d.decisiones.service.UserService
 import org.springframework.stereotype.Service
+
+import org.cr_d.decisiones.service.UserService
 
 @Service
 class GetUsersCountUseCase (

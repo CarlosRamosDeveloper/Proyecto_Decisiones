@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.usecases
 
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.model.Location
 import org.cr_d.decisiones.model.NonPlayableCharacter
 import org.cr_d.decisiones.service.NpcService
-import org.springframework.stereotype.Service
 
 @Service
 class GetAllNpcsByLocationUseCase (

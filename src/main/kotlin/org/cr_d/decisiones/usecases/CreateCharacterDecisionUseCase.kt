@@ -1,11 +1,12 @@
 package org.cr_d.decisiones.usecases
 
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.dto.CharacterDecisionRequest
 import org.cr_d.decisiones.model.CharacterDecision
 import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
-import org.springframework.stereotype.Service
 
 @Service
 class CreateCharacterDecisionUseCase (

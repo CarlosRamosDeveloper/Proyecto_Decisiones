@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.usecases
 
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.dto.CharacterPresetRequest
 import org.cr_d.decisiones.model.CharacterPreset
 import org.cr_d.decisiones.service.LocationService
-import org.springframework.stereotype.Service
 
 @Service
 class CreateCharacterPresetUseCase(

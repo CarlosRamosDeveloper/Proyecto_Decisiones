@@ -1,8 +1,9 @@
 package org.cr_d.decisiones.usecases
 
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.model.CharacterDecision
 import org.cr_d.decisiones.service.CharacterDecisionService
-import org.springframework.stereotype.Service
 
 @Service
 class GetCharacterDecisionsByCharacterIdUseCase (

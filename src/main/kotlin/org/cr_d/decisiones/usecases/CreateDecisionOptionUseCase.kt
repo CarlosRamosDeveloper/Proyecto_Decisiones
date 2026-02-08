@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.usecases
 
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.dto.DecisionOptionRequest
 import org.cr_d.decisiones.model.DecisionOption
 import org.cr_d.decisiones.service.DecisionService
-import org.springframework.stereotype.Service
 
 @Service
 class CreateDecisionOptionUseCase (
