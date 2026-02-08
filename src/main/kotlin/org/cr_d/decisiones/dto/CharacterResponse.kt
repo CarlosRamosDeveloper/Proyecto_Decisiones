@@ -9,5 +9,3 @@ data class CharacterResponse (
     val sex: String,
     val decisions: List<PlayerDecisionResponse> = emptyList()
 )
-
-// TODO: Agregar la lista de PlayerDecisionResponse
