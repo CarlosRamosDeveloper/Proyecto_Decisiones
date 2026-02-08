@@ -1,7 +1,8 @@
 package org.cr_d.decisiones.dto
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDateTime
+
+import com.fasterxml.jackson.annotation.JsonFormat
 
 data class CharacterDecisionResponse (
     val id: Long,
