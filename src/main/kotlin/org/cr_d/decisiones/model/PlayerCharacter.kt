@@ -5,7 +5,6 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "player_characters")
-@JsonIgnoreProperties("hibernateLazyInitializer", "handler")
 class PlayerCharacter (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +19,10 @@ class PlayerCharacter (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "last_location_id", nullable = false)
     val lastLocationId: Location,
+    @OneToMany(
+        mappedBy = "playerCharacter",
+        cascade = [CascadeType.REMOVE],
+        orphanRemoval = true
+    )
+    val decisions: MutableList<CharacterDecision> = mutableListOf()
 )

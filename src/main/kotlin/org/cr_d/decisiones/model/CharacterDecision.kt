@@ -17,6 +17,7 @@ class CharacterDecision(
     val id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_character_id")
     val playerCharacter: PlayerCharacter,
 
     @ManyToOne(fetch = FetchType.LAZY)
