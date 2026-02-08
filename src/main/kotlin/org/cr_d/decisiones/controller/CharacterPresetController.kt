@@ -30,7 +30,7 @@ class CharacterPresetController (
 
     @GetMapping("/{id}")
     fun getPresetById(@PathVariable id: Long, model: Model): String {
-        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/preset/error"
+        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/presets/error"
         model.addAttribute("title", "Información del preset")
         model.addAttribute("preset", preset)
 
@@ -58,8 +58,8 @@ class CharacterPresetController (
     }
 
     @GetMapping("/edit/{id}")
-    fun showEditForm(@PathVariable("id") id: Long, model: Model): String {
-        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/preset/error"
+    fun showEditForm(@PathVariable id: Long, model: Model): String {
+        val preset = characterPresetService.getPresetById(id) ?: return "redirect:/presets/error"
         val presetToUpdate = CharacterPresetRequest(preset.id,preset.race, preset.sex, preset.location.id!!, preset.description)
         model.addAttribute("preset", presetToUpdate)
         model.addAttribute("locations", locationService.getAllLocations())
