@@ -6,7 +6,7 @@ import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.CharacterDecisionService
-import org.cr_d.decisiones.usecases.CreatePlayerDecisionUseCase
+import org.cr_d.decisiones.usecases.CreateCharacterDecisionUseCase
 import org.cr_d.decisiones.usecases.UpdateCharacterDecisionUseCase
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/playerDecisions")
 class CharacterDecisionController (
     private val characterDecisionService: CharacterDecisionService,
-    private val create: CreatePlayerDecisionUseCase,
+    private val create: CreateCharacterDecisionUseCase,
     private val update: UpdateCharacterDecisionUseCase,
     private val characterService: PlayerCharacterService,
     private val decisionService: DecisionService,

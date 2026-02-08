@@ -8,7 +8,7 @@ import org.cr_d.decisiones.service.PlayerCharacterService
 import org.springframework.stereotype.Service
 
 @Service
-class CreatePlayerDecisionUseCase (
+class CreateCharacterDecisionUseCase (
     private val characterService: PlayerCharacterService,
     private val decisionService: DecisionService,
     private val optionService: DecisionOptionService
