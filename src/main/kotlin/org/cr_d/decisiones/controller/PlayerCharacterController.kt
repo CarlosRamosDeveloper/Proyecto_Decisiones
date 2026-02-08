@@ -36,7 +36,7 @@ class PlayerCharacterController (
 
     @GetMapping("/{id}")
     fun getCharacterById(@PathVariable id: Long, model: Model): String {
-        val character = characterService.getCharacterById(id) ?: return "redirect:/character/error"
+        val character = characterService.getCharacterById(id) ?: return "redirect:/characters/error"
         val decisions = getDecisions.execute(character.id!!)
 
         model.addAttribute("title", "Listado de personajes")
@@ -67,7 +67,7 @@ class PlayerCharacterController (
 
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val character = characterService.getCharacterById(id) ?: return "redirect:/character/error"
+        val character = characterService.getCharacterById(id) ?: return "redirect:/characters/error"
         model.addAttribute("character", character)
         model.addAttribute("users", usersService.getAllUsers())
         model.addAttribute("presets", presetService.getAllPresets())
