@@ -12,9 +12,8 @@
 
 > Ejemplo:  
 > El personaje llega a una ciudad y hay un gato subido en un arbol, un niño le pide ayuda para bajar al gato.  
->> Ayudar: El gato huye en cuanto toca el suelo.
+>> Ayudar: El gato huye en cuanto toca el suelo.<br>
 > No ayudar: El niño intenta trepar al arbol para bajar al gato, pero se termina cayendo y se parte una pierna.  
-> La afinidad del niño bajará varios puntos por qué va a echar la culpa al jugador de haberse roto una pierna.
 
 ## Requisitos
 
