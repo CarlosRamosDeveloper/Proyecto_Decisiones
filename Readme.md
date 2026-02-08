@@ -184,15 +184,16 @@ TODO
 >La API expone en el endpoint /api/users la información para los clientes relacionada con los usuarios. 
 > Estos son métodos http y los endpoints expuestos por la API
 
-| HTTP method | Endpoint                                             | Resultado                      |
-|-------------|------------------------------------------------------|--------------------------------|
-| Post        | localhost:8080/api/users                             | Crea un usuario                |
-| Get         | localhost:8080/api/users                             | Obtiene todos los usuarios     |
-| Get         | localhost:8080/api/users/1                           | Obtiene el usuario con el id 1 |
-| Get         | localhost:8080/api/users/email?email=carlos@mail.com | Obtiene el usuario por email   |
-| Delete      | localhost:8080/api/users/3                           | Elimina al usuario con id 3    |
+| HTTP method | Endpoint                                             | Resultado                                  |
+|-------------|------------------------------------------------------|--------------------------------------------|
+| Post        | localhost:8080/api/users                             | Crea un usuario                            |
+| Get         | localhost:8080/api/users                             | Obtiene todos los usuarios                 |
+| Get         | localhost:8080/api/users/1                           | Obtiene el usuario con el id 1             |
+| Get         | localhost:8080/api/users/email?email=carlos@mail.com | Obtiene el usuario por email               |
+| Put         | localhost:8080/api/users/1                           | Actualiza los valores del usuario con id 1 |
+| Delete      | localhost:8080/api/users/3                           | Elimina al usuario con id 3                |
 
->Ejemplo del body de crear usuario
+>Ejemplo del body de crear / actualiozar usuario 
 > ``` Json 
 > {
 >   "username": String,
