@@ -14,7 +14,7 @@
 > El personaje llega a una ciudad y hay un gato subido en un arbol, un niño le pide ayuda para bajar al gato.  
 >> Ayudar: El gato huye en cuanto toca el suelo.
 > No ayudar: El niño intenta trepar al arbol para bajar al gato, pero se termina cayendo y se parte una pierna.  
-> La afinidad del niño bajará varios puntos por que va a echar la culpa al jugador de haberse roto una pierna.
+> La afinidad del niño bajará varios puntos por qué va a echar la culpa al jugador de haberse roto una pierna.
 
 ## Requisitos
 
@@ -68,89 +68,108 @@ docker exec -i mysql_db mysql \
 
 ## Tables
 
-### users
+### character_presets
 
->Información básica del usuario  
->Los personajes están vinculados al usuario
+> Contiene la información de "cuerpo" del personaje.
+>> No pueden crearse ni eliminarse por nadie.
 
-- id - Long
-- username - 
-- mail
+| Campo            | Tipo MySQL   | Descripción                   |
+|------------------|--------------|-------------------------------|
+| id               | bigint       | Identificador del preset.     |
+| description      | varchar(255) | Descripción del preset.       |
+| race             | varchar(255) | Raza del preset.              |
+| sex              | varchar(255) | Sexo del preset.              |
+| initial_location | bigint       | Ubicación inicial del preset. |
 
-### character_preset
+### decision_options
 
->Almacena la información común del personaje predefinido
+> Son las opciones que puede elegir un jugador con uno de sus personajes al tomar una decisión. 
+>> El usuario no puede crear, modificar ni eliminarlas.<br>
+> Solo un administrador puede crear, modificar y eliminar opciones de decisión.
 
-- id
-- race
+| Campo        | Tipo MySQL   | Descripción                                                                                    |
+|--------------|--------------|------------------------------------------------------------------------------------------------|
+| id           | bigint       | Identificador de la opción de decisión.                                                        |
+| option_key   | varchar(255) | El valor de la decisión. No visible para el usuario.                                           |
+| text         | varchar(255) | El texto que aparece en el programa cuando el jugador escoge la opción.                        |
+| decision_id  | bigint       | El identificador de la decisión a la que está asociada la opción.                              |
+| display_text | varchar(255) | El texto que aparece en el registro cuando se revisan las decisiones tomadas con el personaje. |
+
+### decisions
+
+> Contiene la información de las decisiones que puede tomar el personaje.
+>> El usuario no puede crear, modificar ni eliminarlas.<br>
+> Solo un administrador puede crear, modificar y eliminar decisiones.
+
+| Campo        | Tipo MySQL   | Descripción                                                  |
+|--------------|--------------|--------------------------------------------------------------|
+| id           | bigint       | Identificador de la decisión.                                |
+| description  | varchar(255) | Texto amigable que muestra la decisión.                      |
+| decision_key | varchar(255) | Código textual de la decisión. No es visible para el usuario |
+
+### locations
+
+>Almacena la información de las ubicaciones.
+>> No pueden crearse ni eliminarse por nadie.
+
+
+| Campo       | Tipo MySQL   | Descripción                        |
+|-------------|--------------|------------------------------------|
+| id          | bigint       | Identificador de la ubicación.     |
+| description | varchar(255) | Descripción breve de la ubicación. |
+| name        | varchar(255) | Nombre de la ubicación.            |
+
+### npcs
+
+> Los NPCs (personajes no jugables) permiten al usuario interactuar con ellos.
+> >> El usuario no puede crear, modificar ni eliminarlas.<br>
+> Solo un administrador puede crear, modificar y eliminar npcs.
+
+| Campo       | Tipo MySQL   | Descripción                                                  |
+|-------------|--------------|--------------------------------------------------------------|
+| id          | bigint       | Identificador del npc.                                       |
+| description | varchar(255) | Descripción del npc.                                         |
+| name        | varchar(255) | Nombre del npc.                                              |
+| location_id | bigint       | Identificador de la ubicación en la que se encuentra el npc. |
+| preset_id   | bigint       | Identificador del preset del cuerpo del npc.                 |
 
 ### player_characters
 
 >Almacena la información del personaje jugable
+>> La clase se llama PlayerCharacter en lugar de Character para evitar problemas relacionados con la clase original de Java
 
-- id
-- user_id
-- preset_id
-- name
-- last_location_id
+> Es la entidad principal del usuario, ya que es la que interactúa con npcs y a través de la que se toman decisiones.
 
-### npcs
+| Campo            | Tipo MySQL   | Descripción                                                           |
+|------------------|--------------|-----------------------------------------------------------------------|
+| id               | bigint       | Identificador del personaje                                           |
+| name             | varchar(255) | Nombre del personaje                                                  |
+| last_location_id | bigint       | Identificador de la última ubicación en la que ha estado el personaje |
+| preset_id        | bigint       | Identificador del preset del cuerpo del personaje                     |
+| player_id        | bigint       | Identificador del dueño del personaje                                 |
 
-> Los NPCs permiten al usuario interactuar con ellos  
-> Hay que darle una vuelta al tema de las opciones aquí
+### player_decisions
 
-- id
-- name
-- description
+>Almacena las decisiones que han tomado los personajes.
+>> Permite la asignación de decisiones y opciones a personajes
 
-### commentaries 
+| Campo               | Tipo MySQL  | Descripción                                                             |
+|---------------------|-------------|-------------------------------------------------------------------------|
+| id                  | bigint      | Identificador de la decisión del personaje.                             |
+| created_at          | datetime(6) | Timestamp con la fecha de la asignación de la decisión en el personaje. |
+| decision_id         | bigint      | Identificador de la decisión.                                           |
+| player_character_id | bigint      | Identificador del personaje.                                            |
+| decision_option_id  | bigint      | Identificador de la opción.                                             |
 
->Están relacionados con los npcs
->Los comentarios tienen una afinidad mínima y máxima
+### users
 
-- id
-- npc_id
-- minimum_affinity
-- maximum_affinity
-- commentary
+>Almacena la información de los usuarios
 
-### npcs_attitude
-
->Almacena la afinidad entre los npc y los personajes
-
-- npc_id
-- player_id
-- total_affinity
-
-### choices
-
->Almacena la información de las decisiones
-
-- id
-- choice
-- description
-
-### npc_choices
-
->Tabla auxiliar con el listado de decisiones por npc
-
-- npc_id
-- choice_id
-
-### locations
-
->Almacena la información de las ubicaciones
-
-- id
-- name
-
-### locations_npcs
-
->Tabla auxiliar con la lista de los npcs de cada ubicación
-
-- npc_id
-- location_id
-
+| Campo    | Tipo MySQL   | Descripción               |
+|----------|--------------|---------------------------|
+| id       | bigint       | Identificador del Usuario |
+| username | varchar(255) | Nombre de usuario         |
+| email    | varchar(255) | email del usuario         |
 
 ## Gestión
 
