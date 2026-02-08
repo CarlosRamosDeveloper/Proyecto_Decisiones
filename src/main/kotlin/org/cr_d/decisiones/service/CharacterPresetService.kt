@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.service
 
-import org.cr_d.decisiones.model.CharacterPreset
-import org.cr_d.decisiones.repository.CharacterPresetRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+
+import org.cr_d.decisiones.model.CharacterPreset
+import org.cr_d.decisiones.repository.CharacterPresetRepository
 
 @Service
 class CharacterPresetService (

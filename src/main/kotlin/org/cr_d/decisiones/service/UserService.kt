@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.service
 
-import org.cr_d.decisiones.model.User
-import org.cr_d.decisiones.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+
+import org.cr_d.decisiones.model.User
+import org.cr_d.decisiones.repository.UserRepository
 
 @Service
 class UserService(

@@ -1,10 +1,11 @@
 package org.cr_d.decisiones.service
 
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.model.Decision
 import org.cr_d.decisiones.model.DecisionOption
 import org.cr_d.decisiones.repository.DecisionOptionRepository
-import org.springframework.data.repository.findByIdOrNull
-import org.springframework.stereotype.Service
 
 @Service
 class DecisionOptionService (

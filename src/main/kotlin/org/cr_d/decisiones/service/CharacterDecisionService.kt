@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.service
 
-import org.cr_d.decisiones.model.CharacterDecision
-import org.cr_d.decisiones.repository.CharacterDecisionRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+
+import org.cr_d.decisiones.model.CharacterDecision
+import org.cr_d.decisiones.repository.CharacterDecisionRepository
 
 @Service
 class CharacterDecisionService (

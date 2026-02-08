@@ -1,10 +1,11 @@
 package org.cr_d.decisiones.service
 
+import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Service
+
 import org.cr_d.decisiones.model.PlayerCharacter
 import org.cr_d.decisiones.model.User
 import org.cr_d.decisiones.repository.PlayerCharacterRepository
-import org.springframework.data.repository.findByIdOrNull
-import org.springframework.stereotype.Service
 
 @Service
 class PlayerCharacterService(

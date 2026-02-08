@@ -1,9 +1,10 @@
 package org.cr_d.decisiones.service
 
-import org.cr_d.decisiones.model.Location
-import org.cr_d.decisiones.repository.LocationRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+
+import org.cr_d.decisiones.model.Location
+import org.cr_d.decisiones.repository.LocationRepository
 
 @Service
 class LocationService (
