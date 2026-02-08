@@ -30,7 +30,7 @@ class DecisionOptionController (
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long, model: Model): String {
-        val option = decisionOptionService.findById(id) ?: return "redirect:/decision/error"
+        val option = decisionOptionService.findById(id) ?: return "redirect:/decisionOptions/error"
 
         model.addAttribute("title", "Información de la opción de decisión")
         model.addAttribute("decision_option", option)
@@ -41,6 +41,7 @@ class DecisionOptionController (
     @GetMapping("/new")
     fun create(model: Model): String {
         val emptyOption = DecisionOptionRequest(null, null, "")
+
         model.addAttribute("decision_option", emptyOption)
         model.addAttribute("decisions", decisionsService.findAll())
         model.addAttribute("title", "Crear Decisión")
@@ -61,8 +62,8 @@ class DecisionOptionController (
     //error
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
-        val option = decisionOptionService.findById(id)
-        val optionToUpdate = DecisionOptionRequest(id, option!!.decision.id, option.key, option.text)
+        val option = decisionOptionService.findById(id) ?: return "redirect:/decisionOptions/error"
+        val optionToUpdate = DecisionOptionRequest(id, option.decision.id, option.key, option.text)
 
         model.addAttribute("decision_option", optionToUpdate)
         model.addAttribute("decisions", decisionsService.findAll())
@@ -74,6 +75,7 @@ class DecisionOptionController (
     @PostMapping("/update/{id}")
     fun update(@PathVariable id: Long, @ModelAttribute option: DecisionOptionRequest): String {
         val updatedOption = createOption.execute(option, id)
+
         decisionOptionService.save(updatedOption)
 
         return "redirect:/decisionOptions"
@@ -84,5 +86,10 @@ class DecisionOptionController (
         decisionOptionService.delete(id)
 
         return "redirect:/decisionOptions"
+    }
+
+    @GetMapping("/error")
+    fun userError(): String {
+        return "decision_option/error"
     }
 }
