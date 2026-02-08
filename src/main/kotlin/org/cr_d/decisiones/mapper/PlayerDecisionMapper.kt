@@ -8,7 +8,7 @@ fun PlayerDecision.toResponse(): PlayerDecisionResponse{
         id = this.id!!,
         characterName = this.playerCharacter.name,
         decision = this.decision.description!!,
-        option = this.decisionOption.text!!,
+        option = this.decisionOption.displayText,
         createdAt = createdAt,
     )
 }

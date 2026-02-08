@@ -29,7 +29,7 @@
 
             <ul class="list-group" th:if="${!character.decisions.isEmpty()}">
                 <li class="list-group-item" th:each="decision : ${character.decisions}">
-                    <span th:text="|${decision.decision} - ${decision.option} (${decision.createdAt})|">Clave</span>
+                    <span th:text="|${decision.decision} - ${decision.option} - (${#temporals.format(decision.createdAt, 'dd/MM/yyyy HH:mm')})|">Clave</span>
                 </li>
             </ul>
         </div>
