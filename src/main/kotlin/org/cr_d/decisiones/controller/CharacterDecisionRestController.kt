@@ -29,9 +29,9 @@ class CharacterDecisionRestController (
     }
 
     @PostMapping("")
-    fun create(@RequestBody request : CharacterDecisionRequest) {
+    fun create(@RequestBody request : CharacterDecisionRequest) : CharacterDecisionResponse {
         val newDecision = createDecision.execute(request)
 
-        characterDecisionService.save(newDecision)
+        return characterDecisionService.save(newDecision).toResponse()
     }
 }
