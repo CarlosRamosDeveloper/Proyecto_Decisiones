@@ -35,7 +35,7 @@ class PlayerCharacterRestController (
     fun findById(
         @PathVariable id : Long
     ): CharacterResponse? {
-        val character = characterService.getCharacterById(id) ?: return null
+        val character = characterService.getCharacterById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Character not found")
         val decisions = getDecisions.execute(character.id!!)
 
         return character.toResponse(decisions)

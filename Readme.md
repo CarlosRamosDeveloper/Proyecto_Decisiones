@@ -8,7 +8,7 @@
 - Existen varias ciudades a las que el personaje puede viajar
 - En las ciudades existen personajes no jugables (NPCs)
 - El usuario puede interactuar con los npcs
-- Los npcs recordarán las decisiones que haya tomado el jugador
+- Se almacena un registro de las decisiones tomadas por el jugador
 
 > Ejemplo:  
 > El personaje llega a una ciudad y hay un gato subido en un arbol, un niño le pide ayuda para bajar al gato.  
@@ -169,6 +169,23 @@ docker exec -i mysql_db mysql \
 | id       | bigint       | Identificador del Usuario |
 | username | varchar(255) | Nombre de usuario         |
 | email    | varchar(255) | email del usuario         |
+
+## Funcionamiento
+
+La aplicación tiene dos tipos de controladores, los controladores para la versión web y los controladores rest.
+
+### Web
+
+Los controladores "Controller" gestionan las peticiones web, en estos se tienen controles más precisos ya que son
+los endpoints administrativos de la aplicación.
+
+### API
+
+Los controladores "RestController" gestionan las peticiones externas, pudiendo ser consumidas por otras webs o aplicaciones.
+1. Las peticiones se reciben mediante objetos Dto de request, que obtienen los datos necesarios para realizar las peticiones.
+2. Cuando la petición llega al servidor, se transforma al tipo de dato de entidad, normalmente a través de un UseCase
+3. Las respuestas del servidor llegan siempre en forma de un dto de respuesta, para hacer más amigable la información expuesta al usuario.
+
 
 ## Gestión
 

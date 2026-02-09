@@ -7,6 +7,8 @@ import org.cr_d.decisiones.dto.CharacterDecisionResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterDecisionService
 import org.cr_d.decisiones.usecases.CreateCharacterDecisionUseCase
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/playerDecisions")
@@ -21,7 +23,7 @@ class CharacterDecisionRestController (
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id : Long) : CharacterDecisionResponse?{
-        val response = characterDecisionService.findById(id) ?: return null
+        val response = characterDecisionService.findById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Character decision not found")
 
         return response.toResponse()
     }

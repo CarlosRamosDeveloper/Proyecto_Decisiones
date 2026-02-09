@@ -22,14 +22,14 @@ class UserRestController (
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id : Long) : UserResponse?{
-        val user = userService.getUserById(id) ?: return null
+        val user = userService.getUserById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")
 
         return user.toResponse()
     }
 
     @GetMapping("/email")
     fun getUserByEmail(@RequestParam("email") email: String) : UserResponse?{
-        val user = userService.getUserByEmail(email) ?: return null
+        val user = userService.getUserByEmail(email) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")
 
         return user.toResponse()
     }
@@ -54,10 +54,8 @@ class UserRestController (
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id : Long){
-        val user = userService.getUserById(id)
+        val user = userService.getUserById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")
 
-        if (user != null){
-            userService.delete(user)
-        }
+        userService.delete(user)
     }
 }

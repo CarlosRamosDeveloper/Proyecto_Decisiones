@@ -8,6 +8,8 @@ import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.mapper.toRestResponse
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/locations")
@@ -22,7 +24,7 @@ class LocationRestController (
 
     @GetMapping("/{id}")
     fun getLocationById(@PathVariable id : Long): LocationRestResponse? {
-        val location = locationService.getLocationById(id) ?: return null
+        val location = locationService.getLocationById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Location not found")
         val npcs = getNpcs.execute(location).map { it.toResponse() }
 
         return location.toRestResponse(npcs)
