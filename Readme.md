@@ -216,15 +216,52 @@ los endpoints administrativos de la aplicación.
 
 Los pasos para dar de alta una nueva decisión son los siguientes:
 
-1. En el panel de gestión pinchamos en decisiónes
-2. Pulsamos el botón de crear, arriba a la izquierda, debajo del título de la sección
+1. En el panel de gestión pinchamos en decisiónes. (fig1)
+2. Pulsamos el botón de crear, arriba a la izquierda, debajo del título de la sección.(fig2)
 3. Introducimos la key, este dato se almacenará en el atributo decision_key de la decisión y no será visible para el usuario.
-4. Introducimos la descripción, este dato se almacenará en el atributo description de la decisión, y sirve para mostrar de forma amigable a que decisión hace referencia
-5. Pulsamos en crear
+4. Introducimos la descripción, este dato se almacenará en el atributo description de la decisión, y sirve para mostrar de forma amigable a que decisión hace referencia.(fig3)
+5. Pulsamos en crear.
 
-Ahora mismo tenemos la nueva decisión creada, pero al ver sus detalles podemos ver que no tiene opciones asociadas.
+Ahora mismo tenemos la nueva decisión creada y podemos verla en la lista (fig4)
+Al ver sus detalles podemos ver que no tiene opciones asociadas. (fig5)
 
 ### Dar de alta una nueva opción
+
+Una vez hemos creado la decisión, podemos dar de alta nuevas opciones para la decisión.
+
+1. En el panel de gestión, pinchamos en Opciones de decisión. (fig6)
+2. Pinchamos en el botón de crear, arriba a la izquierda, debajo del título de la sección (fig7)
+3. Seleccionamos la decisión, esta opción se vinculará a la decisión seleccionada.
+4. Introducimos el valor, esto se almacenará la información en el atributo option_key, no es visible para el usuario.
+5. Introducimos la etiqueta, esto se almacenará en displayText y es un campo embellecido para el usuario.
+6. Introducimos el comentario, este comentario será el texto que le aparece al personaje al tomar la decisión.
+7. Pulsamos en crear (fig8).
+
+Ahora podemos ver un listado completo de las decisiones. Hemos creado también una buena decisión. (fig9)
+
+### Asignar una decisión a un personaje
+
+Hasta ahora hemos creado decisiones y opciones para estas, ahora vamos a asignar a un personaje una decisión.<br/>
+Para ello pulsamos en el botón de decisiones de personajes. (fig10)<br/>
+Recuerda que para poder asignar una decisión a un personaje, primero tiene que haber personajes. (fig 11)<br/> 
+Una vez hay personajes registrados en el sistema el botón aparece con normalidad. (fig12)<br/>
+
+1. Pulsamos en el botón de crear.
+2. Seleccionamos el personaje al que se va a asignar la decisión.
+3. Seleccionamos la decisión que se va a asociar al personaje.
+4. Seleccionamos la elección que se va a asociar al personaje. Es importante asegurarse de que la elección esté relacionada con la decisión, ya que thymeleaf no permite la carga reactiva de la página.
+5. Pulsamos en asignar decisión al personaje. (fig13)
+
+Ahora podemos ver el resultado de la creación. (fig14)
+Si pulsamos en detalle, podemos ver la información detallada. (fig15)
+
+### Edición
+
+Como nos arrepentimos de haberle asignado una mala decisión al personaje, pulsamos en el botón de edición, debajo de los datos.
+En esta pantalla podemos modificar todos los datos que consideremos necesarios de la entidad.
+Vamos a pulsar en la elección y la cambiamos por una buena decisión, tras eso, pulsamos modificar decisión del persoanje. (fig16)
+Al volver al listado, podemos ver que los cambios se han almacenado correctamente. (fig17)
+Para comprobar que todo está correcto, volvemos a pulsar en detalle. Podemos apreciar de que todo se ha actualizado correctamnete. (fig18)
 
 ## Endpoints
 
