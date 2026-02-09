@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.45, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.45, for Linux (aarch64)
 --
 -- Host: localhost    Database: decisions_database
 -- ------------------------------------------------------
@@ -14,6 +14,33 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `character_flags`
+--
+
+DROP TABLE IF EXISTS `character_flags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `character_flags` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `flag_key` varchar(255) NOT NULL,
+  `flag_value` varchar(255) NOT NULL,
+  `player_character_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKldg6m4sfqhyen46jvh1x2vjqw` (`player_character_id`),
+  CONSTRAINT `FKldg6m4sfqhyen46jvh1x2vjqw` FOREIGN KEY (`player_character_id`) REFERENCES `player_characters` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `character_flags`
+--
+
+LOCK TABLES `character_flags` WRITE;
+/*!40000 ALTER TABLE `character_flags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `character_flags` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `character_presets`
@@ -60,7 +87,7 @@ CREATE TABLE `decision_options` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK2hrbuvvjgv3yjr2ij2085nu2r` (`decision_id`,`option_key`),
   CONSTRAINT `FKs8r1f9ttraqq036ep3odmo1j2` FOREIGN KEY (`decision_id`) REFERENCES `decisions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +96,7 @@ CREATE TABLE `decision_options` (
 
 LOCK TABLES `decision_options` WRITE;
 /*!40000 ALTER TABLE `decision_options` DISABLE KEYS */;
-INSERT INTO `decision_options` VALUES (1,'guild_ninja','Siempre me ha gustado el subterfugio y el sigilo',1,'Gremio de Ninjas'),(2,'guild_wizard','Siempre he querido estudiar el origen de la magia',1,'Gremio de Magos'),(3,'guild_mercenary','Siempre he querido ganarme la vida ofreciendo mi fuerza al servicio de los demás',1,'Gremio de Mercenarios'),(4,'artisan_blacksmith','El herrero provee a la ciudad de herramientas, armas y armaduras, voy con el',2,'Herrero'),(5,'artisan_jeweler','Ayudar al joyero puede repercutirse en la mejora económica de la ciudad (y la mía...) ',2,'Joyero'),(6,'thief_kid_beat','Darle una paliza al niño le enseñará modales',3,'Le diste una paliza'),(7,'thief_kid_help','Distraeré a los guardias para hacerle ganar tiempo al niño',3,'Le ayudaste'),(8,'thief_kid_justice','Derribo al niño para asegurarme de que no escape de la justicia',3,'Le derribaste');
+INSERT INTO `decision_options` VALUES (1,'guild_ninja','Siempre me ha gustado el subterfugio y el sigilo',1,'Gremio de Ninjas'),(2,'guild_wizard','Siempre he querido estudiar el origen de la magia',1,'Gremio de Magos'),(3,'guild_mercenary','Siempre he querido ganarme la vida ofreciendo mi fuerza al servicio de los demás',1,'Gremio de Mercenarios'),(4,'artisan_blacksmith','El herrero provee a la ciudad de herramientas, armas y armaduras, voy con el',2,'Herrero'),(5,'artisan_jeweler','Ayudar al joyero puede repercutirse en la mejora económica de la ciudad (y la mía...) ',2,'Joyero'),(6,'thief_kid_beat','Darle una paliza al niño le enseñará modales',3,'Le diste una paliza'),(7,'thief_kid_help','Distraeré a los guardias para hacerle ganar tiempo al niño',3,'Le ayudaste'),(8,'thief_kid_justice','Derribo al niño para asegurarme de que no escape de la justicia',3,'Le derribaste'),(9,'way_left','Elijo el camino de la izquierda',4,'Camino de la izquierda'),(10,'way_right','Elijo el camino de la derecha',4,'Camino de la derecha');
 /*!40000 ALTER TABLE `decision_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +113,7 @@ CREATE TABLE `decisions` (
   `decision_key` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKsr0n3xk05gusu6n3pokhyf5yt` (`decision_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +122,7 @@ CREATE TABLE `decisions` (
 
 LOCK TABLES `decisions` WRITE;
 /*!40000 ALTER TABLE `decisions` DISABLE KEYS */;
-INSERT INTO `decisions` VALUES (1,'Gremio al que te has unido','joined_guild'),(2,'A que artesano de StoneHold ayudaste','stonehold_helped_artisan'),(3,'Que acción tomaste con el niño que robó la manzana','thief_kid');
+INSERT INTO `decisions` VALUES (1,'Gremio al que te has unido','joined_guild'),(2,'A que artesano de StoneHold ayudaste','stonehold_helped_artisan'),(3,'Que acción tomaste con el niño que robó la manzana','thief_kid'),(4,'Camino inicial que tomaste','initial_way');
 /*!40000 ALTER TABLE `decisions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,4 +281,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-08 11:28:07
+-- Dump completed on 2026-02-09 15:24:41
