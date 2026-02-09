@@ -1,4 +1,4 @@
-package org.cr_d.decisiones.usecases
+package org.cr_d.decisiones.usecase
 
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime

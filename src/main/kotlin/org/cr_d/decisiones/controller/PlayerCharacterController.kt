@@ -9,8 +9,8 @@ import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.UserService
-import org.cr_d.decisiones.usecases.CreateCharacterUseCase
-import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
+import org.cr_d.decisiones.usecase.CreateCharacterUseCase
+import org.cr_d.decisiones.usecase.GetCharacterDecisionsByCharacterIdUseCase
 
 @Controller
 @RequestMapping("/characters")

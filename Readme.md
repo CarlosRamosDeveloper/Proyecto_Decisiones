@@ -174,18 +174,29 @@ docker exec -i mysql_db mysql \
 
 La aplicación tiene dos tipos de controladores, los controladores para la versión web y los controladores rest.
 
+- La aplicación utiliza docker para levantar los servidores de SpringBoot y MySQL.
+- Se realiza un healthcheck en la base de datos para que el servidor se levante automáticamente cuando esté operativa.
+- Las entidades se modelan en la carpeta model, siendo la información que se almacena en la base de datos.
+- Las interfaces de la carpeta repository permiten implementar JPA con las entidades.
+- Los servicios de la carpeta Service implementan los métodos crud de los repositorios
+- Para ciertas implementaciones concretas se han creado los servicios UseC
+
 ### Web
 
-Los controladores "Controller" gestionan las peticiones web, en estos se tienen controles más precisos ya que son
+>Los controladores "Controller" gestionan las peticiones web, en estos se tienen controles más precisos ya que son
 los endpoints administrativos de la aplicación.
+>- Dispone de una página personalizada para los errores 404 y 500.
+>- Todas las entidades tienen su error personalizado en caso de no encontrar el id indicado.
+>- Las entidades que dependen de otras para ser creadas, no se pueden crear (no aparece el botón de crear), hasta que al menos haya una entidad de la que puedan depender.
+>-  
 
 ### API
 
-Los controladores "RestController" gestionan las peticiones externas, pudiendo ser consumidas por otras webs o aplicaciones.
-1. Las peticiones se reciben mediante objetos Dto de request, que obtienen los datos necesarios para realizar las peticiones.
-2. Cuando la petición llega al servidor, se transforma al tipo de dato de entidad, normalmente a través de un UseCase
-3. Las respuestas del servidor llegan siempre en forma de un dto de respuesta, para hacer más amigable la información expuesta al usuario.
-
+>Los controladores "RestController" gestionan las peticiones externas, pudiendo ser consumidas por otras webs o aplicaciones. 
+>- Las peticiones se reciben mediante objetos Dto de request, que obtienen los datos necesarios para realizar las peticiones. 
+>- Cuando la petición llega al servidor, se transforma al tipo de dato de entidad, normalmente a través de un UseCase .
+>- Las respuestas del servidor llegan siempre en forma de un dto de respuesta, para hacer más amigable la información expuesta al usuario.
+>- No tiene acceso a los mismos recursos que la versión web.
 
 ## Gestión
 

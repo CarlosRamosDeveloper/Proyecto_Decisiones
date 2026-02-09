@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*
 
 import org.cr_d.decisiones.dto.DecisionRequest
 import org.cr_d.decisiones.service.DecisionService
-import org.cr_d.decisiones.usecases.CreateDecisionUseCase
-import org.cr_d.decisiones.usecases.GetAllOptionsByDecisionUseCase
+import org.cr_d.decisiones.usecase.CreateDecisionUseCase
+import org.cr_d.decisiones.usecase.GetAllOptionsByDecisionUseCase
 
 @Controller
 @RequestMapping(value = ["/decisions"])

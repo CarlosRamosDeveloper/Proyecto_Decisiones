@@ -9,7 +9,7 @@ import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.service.NpcService
-import org.cr_d.decisiones.usecases.CreateNpcUseCase
+import org.cr_d.decisiones.usecase.CreateNpcUseCase
 
 @Controller
 @RequestMapping("/npcs")

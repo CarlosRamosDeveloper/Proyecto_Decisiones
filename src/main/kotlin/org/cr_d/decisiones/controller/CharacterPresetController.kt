@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 import org.cr_d.decisiones.dto.CharacterPresetRequest
 import org.cr_d.decisiones.service.CharacterPresetService
 import org.cr_d.decisiones.service.LocationService
-import org.cr_d.decisiones.usecases.CreateCharacterPresetUseCase
+import org.cr_d.decisiones.usecase.CreateCharacterPresetUseCase
 
 @Controller
 @RequestMapping("/presets")

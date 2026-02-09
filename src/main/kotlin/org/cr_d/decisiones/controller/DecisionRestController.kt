@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 import org.cr_d.decisiones.dto.DecisionResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.DecisionService
-import org.cr_d.decisiones.usecases.GetAllOptionsByDecisionUseCase
+import org.cr_d.decisiones.usecase.GetAllOptionsByDecisionUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 

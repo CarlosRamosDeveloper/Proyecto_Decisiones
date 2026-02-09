@@ -7,7 +7,7 @@ import org.cr_d.decisiones.dto.LocationRestResponse
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.mapper.toRestResponse
 import org.cr_d.decisiones.service.LocationService
-import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
+import org.cr_d.decisiones.usecase.GetAllNpcsByLocationUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 

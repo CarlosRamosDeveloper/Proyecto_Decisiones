@@ -11,9 +11,9 @@ import org.cr_d.decisiones.dto.UpdateCharacterNameRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.LocationService
 import org.cr_d.decisiones.service.PlayerCharacterService
-import org.cr_d.decisiones.usecases.CreateCharacterUseCase
-import org.cr_d.decisiones.usecases.GetCharacterByUsernameUseCase
-import org.cr_d.decisiones.usecases.GetCharacterDecisionsByCharacterIdUseCase
+import org.cr_d.decisiones.usecase.CreateCharacterUseCase
+import org.cr_d.decisiones.usecase.GetCharacterByUsernameUseCase
+import org.cr_d.decisiones.usecase.GetCharacterDecisionsByCharacterIdUseCase
 
 @RestController
 @RequestMapping("/api/characters")

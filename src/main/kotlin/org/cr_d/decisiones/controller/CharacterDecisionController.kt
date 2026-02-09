@@ -10,8 +10,8 @@ import org.cr_d.decisiones.service.DecisionOptionService
 import org.cr_d.decisiones.service.DecisionService
 import org.cr_d.decisiones.service.PlayerCharacterService
 import org.cr_d.decisiones.service.CharacterDecisionService
-import org.cr_d.decisiones.usecases.CreateCharacterDecisionUseCase
-import org.cr_d.decisiones.usecases.UpdateCharacterDecisionUseCase
+import org.cr_d.decisiones.usecase.CreateCharacterDecisionUseCase
+import org.cr_d.decisiones.usecase.UpdateCharacterDecisionUseCase
 
 @Controller
 @RequestMapping("/playerDecisions")

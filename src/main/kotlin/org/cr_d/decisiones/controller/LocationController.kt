@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*
 import org.cr_d.decisiones.dto.LocationRequest
 import org.cr_d.decisiones.mapper.toResponse
 import org.cr_d.decisiones.service.LocationService
-import org.cr_d.decisiones.usecases.CreateLocationUseCase
-import org.cr_d.decisiones.usecases.GetAllNpcsByLocationUseCase
+import org.cr_d.decisiones.usecase.CreateLocationUseCase
+import org.cr_d.decisiones.usecase.GetAllNpcsByLocationUseCase
 
 @Controller
 @RequestMapping("/locations")
