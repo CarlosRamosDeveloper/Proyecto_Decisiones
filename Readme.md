@@ -179,7 +179,11 @@ La aplicación tiene dos tipos de controladores, los controladores para la versi
 - Las entidades se modelan en la carpeta model, siendo la información que se almacena en la base de datos.
 - Las interfaces de la carpeta repository permiten implementar JPA con las entidades.
 - Los servicios de la carpeta Service implementan los métodos crud de los repositorios
-- Para ciertas implementaciones concretas se han creado los servicios UseC
+- Para ciertas implementaciones concretas se han creado los servicios usecase, que tienen una dependencia exclusiva y permiten 
+reducir el código en los controladores, mejorando su legibilidad y mantenibilidad.
+- En la carpeta mapper están ubicado código con funciones externas para permitir el mapeo entre entidades a sus respectivas respuestas.
+- Los controladores separan las responsabilidades de Web y API debido a que web permite un mayor control que la API.
+- En la carpeta security está toda la configuración relacionada con los CORS (Ahora en esta versión para desarrollo rápido está únicamente deshabilitandolo)
 
 ### Web
 
@@ -188,7 +192,8 @@ los endpoints administrativos de la aplicación.
 >- Dispone de una página personalizada para los errores 404 y 500.
 >- Todas las entidades tienen su error personalizado en caso de no encontrar el id indicado.
 >- Las entidades que dependen de otras para ser creadas, no se pueden crear (no aparece el botón de crear), hasta que al menos haya una entidad de la que puedan depender.
->-  
+>- Pese a que al principio la idea era que funcionase igual que la API (Request -> Model -> Response), debido a problemas con thymeleaf ha quedado una ligera inconsistencia, aunque al usuario no le afecte es un problema a nivel de diseño.
+>- Todas las entidades tienen una vista de lista, otra de detalle y otra para formulario, que se utilizan tanto en create como en update.
 
 ### API
 
@@ -200,7 +205,26 @@ los endpoints administrativos de la aplicación.
 
 ## Gestión
 
-TODO
+> Desde el panel de gestión, un administrador del servicio puede administrar la información de la base de datos con facilidad.
+> Además de todo lo que puede hacer un usuario común un Administrador del servicio puede:
+>- Editar todas las entidades
+>- Editar y crear npcs, decisiones y opciones de decisión
+>- Eliminar opciones de personaje<br>  
+>> El administrador no puede crear ni eliminar ubicaciones ni presets, aunque sí puede modificarlos.
+
+### Dar de alta una nueva decisión
+
+Los pasos para dar de alta una nueva decisión son los siguientes:
+
+1. En el panel de gestión pinchamos en decisiónes
+2. Pulsamos el botón de crear, arriba a la izquierda, debajo del título de la sección
+3. Introducimos la key, este dato se almacenará en el atributo decision_key de la decisión y no será visible para el usuario.
+4. Introducimos la descripción, este dato se almacenará en el atributo description de la decisión, y sirve para mostrar de forma amigable a que decisión hace referencia
+5. Pulsamos en crear
+
+Ahora mismo tenemos la nueva decisión creada, pero al ver sus detalles podemos ver que no tiene opciones asociadas.
+
+### Dar de alta una nueva opción
 
 ## Endpoints
 
