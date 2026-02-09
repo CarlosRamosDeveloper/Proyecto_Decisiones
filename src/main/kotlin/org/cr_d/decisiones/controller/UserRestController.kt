@@ -35,8 +35,8 @@ class UserRestController (
     }
 
     @PostMapping("")
-    fun createUser(@RequestBody user: User){
-        userService.save(user)
+    fun createUser(@RequestBody user: User) : UserResponse{
+        return userService.save(user).toResponse()
     }
 
     @PutMapping("/{id}")
