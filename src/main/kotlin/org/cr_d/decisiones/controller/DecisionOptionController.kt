@@ -41,7 +41,7 @@ class DecisionOptionController (
 
         model.addAttribute("decision_option", emptyOption)
         model.addAttribute("decisions", decisionsService.findAll())
-        model.addAttribute("title", "Crear Decisión")
+        model.addAttribute("title", "Crear Opción")
 
         return "decision_option/form"
     }

@@ -181,13 +181,13 @@ La aplicación tiene dos tipos de controladores, los controladores para la versi
 - Los servicios de la carpeta Service implementan los métodos crud de los repositorios
 - Para ciertas implementaciones concretas se han creado los servicios usecase, que tienen una dependencia exclusiva y permiten 
 reducir el código en los controladores, mejorando su legibilidad y mantenibilidad.
-- En la carpeta mapper están ubicado código con funciones externas para permitir el mapeo entre entidades a sus respectivas respuestas.
-- Los controladores separan las responsabilidades de Web y API debido a que web permite un mayor control que la API.
+- En la carpeta mapper está ubicado código con funciones externas para permitir el mapeo entre entidades a sus respectivas respuestas.
+- Los controladores separan las responsabilidades de Web y API debido a qué web permite un mayor control que la API.
 - En la carpeta security está toda la configuración relacionada con los CORS (Ahora en esta versión para desarrollo rápido está únicamente deshabilitandolo)
 
 ### Web
 
->Los controladores "Controller" gestionan las peticiones web, en estos se tienen controles más precisos ya que son
+>Los controladores "Controller" gestionan las peticiones web, en estos se tienen controles más precisos ya qué son
 los endpoints administrativos de la aplicación.
 >- Dispone de una página personalizada para los errores 404 y 500.
 >- Todas las entidades tienen su error personalizado en caso de no encontrar el id indicado.
@@ -200,7 +200,7 @@ los endpoints administrativos de la aplicación.
 >Los controladores "RestController" gestionan las peticiones externas, pudiendo ser consumidas por otras webs o aplicaciones. 
 >- Las peticiones se reciben mediante objetos Dto de request, que obtienen los datos necesarios para realizar las peticiones. 
 >- Cuando la petición llega al servidor, se transforma al tipo de dato de entidad, normalmente a través de un UseCase .
->- Las respuestas del servidor llegan siempre en forma de un dto de respuesta, para hacer más amigable la información expuesta al usuario.
+>- Las respuestas del servidor llegan siempre en forma de un Dto de respuesta, para hacer más amigable la información expuesta al usuario.
 >- No tiene acceso a los mismos recursos que la versión web.
 
 ## Gestión
@@ -216,52 +216,53 @@ los endpoints administrativos de la aplicación.
 
 Los pasos para dar de alta una nueva decisión son los siguientes:
 
-1. En el panel de gestión pinchamos en decisiónes. (fig1)
-2. Pulsamos el botón de crear, arriba a la izquierda, debajo del título de la sección.(fig2)
+1. En el panel de gestión pinchamos en decisiónes. <br> ![fig1](docs/fig1.png)
+2. Pulsamos el botón de crear, arriba a la izquierda, debajo del título de la sección. <br> ![fig2](docs/fig2.png)
 3. Introducimos la key, este dato se almacenará en el atributo decision_key de la decisión y no será visible para el usuario.
-4. Introducimos la descripción, este dato se almacenará en el atributo description de la decisión, y sirve para mostrar de forma amigable a que decisión hace referencia.(fig3)
-5. Pulsamos en crear.
+4. Introducimos la descripción, este dato se almacenará en el atributo description de la decisión, y sirve para mostrar de forma amigable a qué decisión hace referencia. <br> ![fig3](docs/fig3.png)
+5. Pulsamos en crear decisión.
 
-Ahora mismo tenemos la nueva decisión creada y podemos verla en la lista (fig4)
-Al ver sus detalles podemos ver que no tiene opciones asociadas. (fig5)
+Ahora mismo tenemos la nueva decisión creada y podemos verla en la lista. <br> ![fig4](docs/fig4.png) <br>
+Al ver sus detalles podemos ver que no tiene opciones asociadas. <br> ![fig5](docs/fig5.png)
 
 ### Dar de alta una nueva opción
 
 Una vez hemos creado la decisión, podemos dar de alta nuevas opciones para la decisión.
 
-1. En el panel de gestión, pinchamos en Opciones de decisión. (fig6)
-2. Pinchamos en el botón de crear, arriba a la izquierda, debajo del título de la sección (fig7)
+1. En el panel de gestión, pinchamos en Opciones de decisión. <br> ![fig6](docs/fig6.png)
+2. Pinchamos en el botón de crear, arriba a la izquierda, debajo del título de la sección. <br> ![fig7](docs/fig7.png)
 3. Seleccionamos la decisión, esta opción se vinculará a la decisión seleccionada.
 4. Introducimos el valor, esto se almacenará la información en el atributo option_key, no es visible para el usuario.
 5. Introducimos la etiqueta, esto se almacenará en displayText y es un campo embellecido para el usuario.
 6. Introducimos el comentario, este comentario será el texto que le aparece al personaje al tomar la decisión.
-7. Pulsamos en crear (fig8).
+7. Pulsamos en crear opción. <br> ![fig8](docs/fig8.jpg)
 
-Ahora podemos ver un listado completo de las decisiones. Hemos creado también una buena decisión. (fig9)
+Ahora podemos ver un listado completo de las decisiones. Hemos creado también una buena decisión. <br> ![fig9](docs/fig9.png)
 
 ### Asignar una decisión a un personaje
 
 Hasta ahora hemos creado decisiones y opciones para estas, ahora vamos a asignar a un personaje una decisión.<br/>
-Para ello pulsamos en el botón de decisiones de personajes. (fig10)<br/>
-Recuerda que para poder asignar una decisión a un personaje, primero tiene que haber personajes. (fig 11)<br/> 
-Una vez hay personajes registrados en el sistema el botón aparece con normalidad. (fig12)<br/>
+Para ello pulsamos en el botón de decisiones de personajes. <br> ![fig10](docs/fig10.png) <br>
+Recuerda que para poder asignar una decisión a un personaje, primero tiene que haber personajes. <br> ![fig11](docs/fig11.png)
+Una vez hay personajes registrados en el sistema el botón aparece con normalidad. <br> ![fig12](docs/fig12.png)
+<br>
 
 1. Pulsamos en el botón de crear.
 2. Seleccionamos el personaje al que se va a asignar la decisión.
 3. Seleccionamos la decisión que se va a asociar al personaje.
 4. Seleccionamos la elección que se va a asociar al personaje. Es importante asegurarse de que la elección esté relacionada con la decisión, ya que thymeleaf no permite la carga reactiva de la página.
-5. Pulsamos en asignar decisión al personaje. (fig13)
+5. Pulsamos en asignar decisión al personaje. <br> ![fig13](docs/fig13.png)
 
-Ahora podemos ver el resultado de la creación. (fig14)
-Si pulsamos en detalle, podemos ver la información detallada. (fig15)
+Ahora podemos ver el resultado de la creación. <br> ![fig14](docs/fig14.png)
+Si pulsamos en detalle, podemos ver la información detallada. <br> ![fig15](docs/fig15.png)
 
 ### Edición
 
 Como nos arrepentimos de haberle asignado una mala decisión al personaje, pulsamos en el botón de edición, debajo de los datos.
 En esta pantalla podemos modificar todos los datos que consideremos necesarios de la entidad.
-Vamos a pulsar en la elección y la cambiamos por una buena decisión, tras eso, pulsamos modificar decisión del persoanje. (fig16)
-Al volver al listado, podemos ver que los cambios se han almacenado correctamente. (fig17)
-Para comprobar que todo está correcto, volvemos a pulsar en detalle. Podemos apreciar de que todo se ha actualizado correctamnete. (fig18)
+Vamos a pulsar en la elección y la cambiamos por una buena decisión, tras eso, pulsamos modificar decisión del personaje. <br> ![fig16](docs/fig16.png) <br>
+Al volver al listado, podemos ver que los cambios se han almacenado correctamente. <br> ![fig17](docs/fig17.png)
+Para comprobar que todo está correcto, volvemos a pulsar en detalle. Podemos apreciar de que todo se ha actualizado correctamente. <br> ![fig18](docs/fig18.png)
 
 ## Endpoints
 
