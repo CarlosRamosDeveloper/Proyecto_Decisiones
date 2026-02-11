@@ -1,13 +1,10 @@
 # Decisions RPG
 
-- Como concepto, esto parece haber sido una mala.
-
 ## Idea
 
 - El jugador tiene n personajes
 - Existen varias ciudades a las que el personaje puede viajar
 - En las ciudades existen personajes no jugables (NPCs)
-- El usuario puede interactuar con los npcs
 - Se almacena un registro de las decisiones tomadas por el jugador
 
 > Ejemplo:  
@@ -26,8 +23,24 @@ El equipo del usuario requiere de la instalación del siguiente software para qu
 
 ## Iniciando el proyecto
 
-### Descargar el repositorio
+> Para obtener los ficheros del proyecto, necesitamos tenerlos en el equipo, para ello debemos realizar como primer paso la opción A o la opción B, no es necesario hacer ambas.
 
+### Opción A: Descompresión
+
+Si disponemos del fichero main en rar, actuamos de la siguiente manera:<br>
+1. Movemos la carpeta main al proyecto.<br>
+2. Movemos los siguientes ficheros a la raiz del proyecto:
+- Decisiones.postman_collection.json
+- docker-compose.yml
+- Decisiones.postman_collection.json
+- carpeta docs
+- Readme
+
+> Para una correcta visualización del readme es necesario que la carpeta docs esté a su misma ubicación, ya que es donde están las imágenes que aparecen en el fichero.
+
+### Opción B: descarga desde el repositorio
+
+Si no disponemos del fichero comprimido, debe de descargarse desde github:<br>
 En el terminal escribimos:
 
 ``` bash
@@ -174,8 +187,8 @@ docker exec -i mysql_db mysql \
 
 La aplicación tiene dos tipos de controladores, los controladores para la versión web y los controladores rest.
 
-- La aplicación utiliza docker para levantar los servidores de SpringBoot y MySQL.
-- Se realiza un healthcheck en la base de datos para que el servidor se levante automáticamente cuando esté operativa.
+- La aplicación utiliza docker para levantar el servidor de MySQL.
+- El usuario debe de levantar el servidor manualmente desde el IDE.
 - Las entidades se modelan en la carpeta model, siendo la información que se almacena en la base de datos.
 - Las interfaces de la carpeta repository permiten implementar JPA con las entidades.
 - Los servicios de la carpeta Service implementan los métodos crud de los repositorios
