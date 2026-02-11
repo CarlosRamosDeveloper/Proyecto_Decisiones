@@ -58,7 +58,7 @@ class DecisionOptionController (
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val option = decisionOptionService.findById(id) ?: return "redirect:/decisionOptions/error"
-        val optionToUpdate = DecisionOptionRequest(id, option.decision.id, option.key, option.text)
+        val optionToUpdate = DecisionOptionRequest(id, option.decision.id, option.key, option.displayText, option.text)
 
         model.addAttribute("decision_option", optionToUpdate)
         model.addAttribute("decisions", decisionsService.findAll())
