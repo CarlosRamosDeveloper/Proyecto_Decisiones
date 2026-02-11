@@ -78,6 +78,9 @@ docker exec -i mysql_db mysql \
 > -u root -prootPassword decisions_database > decisions_database.sql
 > ```
 
+5. Para acceder al servidor, vamos a localhost:8080
+6. Para hacer peticiones al servidor, la información está al final del documento.
+
 ## Tables
 
 ### character_presets
