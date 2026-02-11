@@ -24,6 +24,8 @@
             <input type="text" th:field="*{description}" class="form-control" required>
         </div>
 
+        <div class="mb-3"><label>Imagen: </label><input type="text" th:field="*{image}"></div>
+
         <button th:text="${title}" type="submit" class="btn btn-primary">Crear</button>
         <a th:href="@{/locations}" class="btn btn-secondary">Cancelar</a>
     </form>

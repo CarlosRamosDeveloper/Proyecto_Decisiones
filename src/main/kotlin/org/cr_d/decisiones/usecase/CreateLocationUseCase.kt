@@ -12,6 +12,7 @@ class CreateLocationUseCase {
             id = id,
             name = location.name,
             description = location.description,
+            image = location.image,
         )
     }
 }
