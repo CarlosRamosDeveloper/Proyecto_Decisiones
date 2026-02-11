@@ -133,6 +133,7 @@ docker exec -i mysql_db mysql \
 | id          | bigint       | Identificador de la ubicación.     |
 | description | varchar(255) | Descripción breve de la ubicación. |
 | name        | varchar(255) | Nombre de la ubicación.            |
+| image       | varchar(255) | Imagen de la ubicación.            |
 
 ### npcs
 
