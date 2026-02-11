@@ -26,8 +26,11 @@ class LocationController(
     }
 
     @GetMapping("/{id}")
-    fun getPresetById(@PathVariable id: Long, model: Model): String {
+    fun getLocationById(@PathVariable id: Long, model: Model): String {
         val location = locationService.getLocationById(id) ?: return "redirect:/locations/error"
+        if (location.image.isNullOrBlank()) {
+            location.image = "NYI.png"
+        }
         val relatedNpcs = getNpcs.execute(location).map { it.toResponse() }
 
         model.addAttribute("title", "Información de Ubicación")
@@ -40,6 +43,9 @@ class LocationController(
     @GetMapping("/edit/{id}")
     fun showEditForm(@PathVariable id: Long, model: Model): String {
         val location = locationService.getLocationById(id) ?: return "redirect:/locations/error"
+        if (location.image.isNullOrBlank()) {
+            location.image = "NYI.png"
+        }
         val updatedLocation = LocationRequest(id, location.name, location.description, location.image)
 
         model.addAttribute("location", updatedLocation)

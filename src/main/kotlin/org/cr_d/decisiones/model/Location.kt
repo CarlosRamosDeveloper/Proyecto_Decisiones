@@ -17,5 +17,5 @@ data class Location(
     val name: String,
     @Column(nullable = false)
     val description: String,
-    val image: String? = null,
+    var image: String? = null,
 )
