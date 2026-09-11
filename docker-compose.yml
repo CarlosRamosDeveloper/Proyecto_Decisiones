@@ -1,12 +1,29 @@
 services:
-  mysql_db:
-    container_name: mysql_db
-    image: mysql:8.0
-    restart: always
+  decisions_app:
+    container_name: decisions_app
+    build: .
     ports:
-      - 3306:3306
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://decisions_database:3306/decisions_database?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootPassword
+    restart: always
+    depends_on:
+      decisions_database:
+        condition: service_healthy
+
+  decisions_database:
+    container_name: decisions_database
+    image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: rootPassword
       MYSQL_DATABASE: decisions_database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
+    volumes:
+      - ./decisions_database.sql:/docker-entrypoint-initdb.d/decisions_database.sql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+      interval: 5s
