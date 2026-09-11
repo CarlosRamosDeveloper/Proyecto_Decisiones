@@ -12,5 +12,11 @@ data class Decision(
     @Column(name = "decision_key", unique = true, nullable = false)
     val key: String,
 
-    val description: String? = null
+    val description: String? = null,
+    @OneToMany(
+        mappedBy = "decision",
+        cascade = [CascadeType.ALL],
+        orphanRemoval = true
+    )
+    val options: MutableList<DecisionOption> = mutableListOf()
 )

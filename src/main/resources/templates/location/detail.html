@@ -15,6 +15,9 @@
 
     <div class="card mt-3">
         <div class="card-body">
+            <img th:src="@{/images/{imageName}(imageName=${location.image})}"
+                 alt="Foto de ubicación"
+                 style="width: 200px;">
             <p class="card-text"><strong>ID:</strong> <span th:text="${location.id}">1</span></p>
             <p class="card-text"><strong>Nombre:</strong> <span th:text="${location.name}">Madrid</span></p>
             <p class="card-text"><strong>Descripción:</strong> <span th:text="${location.description}">Hace calor</span></p>
